@@ -8,6 +8,8 @@ public class TiendaProductosApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TiendaProductosApplication.class, args);
+		InterfazUsuario interfazUsuario = new InterfazUsuario();
+		interfazUsuario.menu();
 	}
 
 }
