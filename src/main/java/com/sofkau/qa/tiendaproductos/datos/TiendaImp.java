@@ -2,14 +2,12 @@ package com.sofkau.qa.tiendaproductos.datos;
 
 import com.sofkau.qa.tiendaproductos.Producto;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Se utiliza la anotación Repository en la clase TiendaImp porque se están implementando métodos CRUD
- */
-@Repository
+@Service
 public class TiendaImp implements Tienda{
 
     List<Producto> productos = new ArrayList<>();
