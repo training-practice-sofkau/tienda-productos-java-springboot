@@ -2,7 +2,7 @@ package com.sofkau.qa.tiendaproductos;
 
 import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Cliente {
 
@@ -13,7 +13,7 @@ public class Cliente {
     public Cliente(String nombre, int cc) {
         this.nombre = nombre;
         this.Cc = cc;
-        carritoDeCompra = Arrays.asList();
+        carritoDeCompra  = new ArrayList<Producto>();
     }
 
     public String getNombre() {
@@ -45,4 +45,7 @@ public class Cliente {
     public void agregarProducto(Producto producto) {
         carritoDeCompra.add(producto);
     }
+
+
+
 }
