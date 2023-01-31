@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import com.sofkau.qa.tiendaproductos.Model.Product;
 import com.sofkau.qa.tiendaproductos.service.Invoice;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,6 +19,11 @@ public class TiendaProductosApplication implements CommandLineRunner {
     public static void main(String[] args) {
         SpringApplication.run(TiendaProductosApplication.class, args);
     }
+
+
+
+    @Autowired
+    Invoice invoice;
 
     @Override
     public void run(String... args) throws Exception {

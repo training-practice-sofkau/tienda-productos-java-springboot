@@ -1,5 +1,8 @@
 package com.sofkau.qa.tiendaproductos.Model;
 
+import org.springframework.stereotype.Component;
+
+
 public class Product {
 
     private int id;

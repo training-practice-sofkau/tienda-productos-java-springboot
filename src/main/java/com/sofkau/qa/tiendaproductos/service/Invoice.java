@@ -1,12 +1,14 @@
 package com.sofkau.qa.tiendaproductos.service;
 
 import com.sofkau.qa.tiendaproductos.Model.Product;
+import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+@Component
 public class Invoice {
     private int id;
     private String fecha;
