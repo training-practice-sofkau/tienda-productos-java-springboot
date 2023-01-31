@@ -25,9 +25,9 @@ public class Factura {
     public void generarFactura() {
         System.out.println("Factura generada \n" +
                 "-------------------------" +
-                "Cliente: " + this.nombreCliente +
+                "Cliente: " + this.nombreCliente + "\n" +
                 "-------------------------- \n" +
-                "Total: $" + this.total +
+                "Total: $" + this.total + "\n" +
                 "-------------------------- \n" +
                 this.imprimirDetalle()
         );

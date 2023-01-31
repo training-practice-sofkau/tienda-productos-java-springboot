@@ -68,6 +68,7 @@ public class Cafeteria {
         this.mostrarProductos();
 
         boolean comprando = true;
+
         while (comprando) {
             System.out.println("¿Qué producto deseas? (Ingresa el índice): ");
             int indice = entrada.nextInt();
@@ -78,11 +79,16 @@ public class Cafeteria {
                 int cantidad = entrada.nextInt();
 
                 if (cantidad <= producto.getStock()){
+                    Scanner entrada2 = new Scanner(System.in);
                     this.facturaEnCurso.agregarDetalle(producto, cantidad);
                     System.out.println("Producto añadido a compra, total: " + this.facturaEnCurso.getTotal());
                     System.out.println("¿Deseas seguir comprando? (s/n)");
-                    char respuesta = entrada.nextLine().charAt(0);
-                    comprando = respuesta == 's';
+
+                    String respuesta = entrada2.nextLine();
+                    comprando = respuesta.equalsIgnoreCase("s");
+                    if(comprando){
+                        this.mostrarProductos();
+                    }
                 } else {
                     System.out.println("No contamos con esa cantidad para ese producto");
                 }
@@ -110,7 +116,7 @@ public class Cafeteria {
     public void imprimirHistorialVentas (){
         int contador = 1;
         for (Factura factura : this.facturas){
-            System.out.println("#" + contador + "- " + factura.getNombreCliente() + "Total: " + factura.getTotal());
+            System.out.println("#" + contador + "- " + factura.getNombreCliente() + " Total: " + factura.getTotal());
         }
     }
 
