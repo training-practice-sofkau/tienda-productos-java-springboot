@@ -1,5 +1,5 @@
 package com.sofkau.qa.tiendaproductos;
 
 public interface Produccion{
-    void addProducto(int posicion,Producto producto);
+    void addProducto(Producto producto);
 }
