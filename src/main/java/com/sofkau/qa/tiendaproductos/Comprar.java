@@ -1,16 +1,17 @@
 package com.sofkau.qa.tiendaproductos;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class Comprar {
 
 
 
-    public String elegirProducto(){
+    public List<Orden> elegirProducto(){
+
+        List<Orden> orden = new ArrayList<>();
+        int total = 0;
 
         /**
          * Lista para guardar el id del producto ingresado por el usuario
@@ -46,6 +47,8 @@ public class Comprar {
 
                 //Agrega el numero del prudcto elegido a una lista
                 ListaProducto.add(numeroProducto);
+                orden.add(new Orden(products.get(numeroProducto-1), cantidad, products.get(numeroProducto-1).getPrecio()));
+                total+= products.get(numeroProducto-1).getPrecio();
 
             }else {
                 System.out.println("Por favor, ingresa un numero valido");
@@ -56,22 +59,50 @@ public class Comprar {
         System.out.println("-------------------------------");
         System.out.println("Los productos seleccionados son:");
 
-        /**
-         * Compara los numeros ingresados por el usuario y el stock de la tienda
-         */
+        for (Orden o:orden) {
+            System.out.println(" " + o.getProducto().getNombre() + " " + o.getQuantity() + " " + o.getPrice());
+        }
 
-        List<Producto> matchedProducts = products.stream()
-                .filter(p -> ListaProducto.contains(p.getId()))
-                .collect(Collectors.toList());
+        System.out.println("El total de su compra seria: " + total);
+        System.out.println("-------------------------------");
 
-            for (Producto p: matchedProducts) {
-                System.out.println(" "+ p.getId()+ "  " + p.getNombre() + " " + p.getCantidad());
+        System.out.println("Desea confirmar la compra: \n 1 Si \n 2 No");
+        int confirmar = input.nextInt();
 
-            }
-        return "Estos son los productos";
+        if (confirmar == 1) {
+            System.out.println("Compra confirmada");
+            Factura factura = new Factura();
+            String fact = factura.generarFactura();
+            return orden;
+
+
+        } else if (confirmar == 2) {
+            System.out.println("No se registro ninguna compra");
+
+        } else {
+            System.out.println("Por favor, ingresa un numero valido");
+        }
+
+        return orden;
 
     }
 
 
+        /**
+         * Compara los numeros ingresados por el usuario y el stock de la tienda
+         */
+
+        /*List<Producto> matchedProducts = products.stream()
+                .filter(p -> orden.contains(p.getNombre()))
+                .collect(Collectors.toList());
+
+            for (Producto p: matchedProducts) {
+                System.out.println(" " + p.getNombre() + " " + p.getPrecio() );
+
+            }*/
 
 }
+
+
+
+

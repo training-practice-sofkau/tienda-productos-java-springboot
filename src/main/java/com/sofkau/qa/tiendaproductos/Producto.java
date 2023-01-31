@@ -3,10 +3,10 @@ package com.sofkau.qa.tiendaproductos;
 public class Producto {
     private int id;
     private String nombre;
-    private int precio;
+    private double precio;
     private int cantidad;
 
-    public Producto(int id, String nombre, int precio, int cantidad) {
+    public Producto(int id, String nombre, double precio, int cantidad) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
@@ -21,7 +21,7 @@ public class Producto {
         return nombre;
     }
 
-    public int getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 

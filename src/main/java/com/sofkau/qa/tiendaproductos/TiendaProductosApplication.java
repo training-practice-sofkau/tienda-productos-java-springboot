@@ -23,13 +23,12 @@ public class TiendaProductosApplication {
 			return args -> {
 
 				System.out.println("-----------------------------------" +
-									" \n Bienvenido a nuestra tienda de Verduras Frescas. Estamos emocionados de ofrecerle la mejor seleccion \n " +
-									"de productos cultivados con amor y cuidado. Haga su pedido en linea hoy mismo! \n -----------------------------");
+									" \n Bienvenidos a nuestra tienda de ropa online para hombre y mujer! Aquí encontraras una  \n " +
+									"amplia seleccion de estilos y tendencias para vestir con confianza en cualquier ocasion. \n " +
+									"Explora nuestro catalogo, encuentra tu look favorito \n -----------------------------");
 
 				Menu menuEntrada = new Menu();
 				menuEntrada.menuPrincipal();
-
-
 
 			};
 
