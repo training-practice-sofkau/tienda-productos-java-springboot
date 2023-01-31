@@ -39,21 +39,19 @@ public class TiendaProductosApplication {
              */
             Scanner sc = new Scanner(System.in);
             ArrayList<Producto> productos = new ArrayList<Producto>();
-            productos.add(new Producto("Producto 1", 10, 10));
-            productos.add(new Producto("Producto 2", 20, 20));
-            productos.add(new Producto("Producto 3", 30, 30));
+            productos.add(new Producto("Carburador", 10, 10));
+            productos.add(new Producto("Tanque", 20, 20));
+            productos.add(new Producto("Manubrio ", 30, 30));
 
             System.out.println("Bienvenido a la Tienda Moto Racer");
             System.out.println("Productos disponibles: ");
             for (int i = 0; i < productos.size(); i++) {
-                System.out.println((i + 1) + ") " + productos.get(i));
+                System.out.println((i + 1) + ") " + productos.get(i).getNombre());
             }
 
             Persona persona = new Persona();
             System.out.print("Ingrese el nombre del cliente: ");
             persona.setNombre(sc.nextLine());
-            System.out.print("Ingrese el apellido del cliente: ");
-            persona.setApéllido(sc.nextLine());
             System.out.print("Ingrese el documento del cliente: ");
             persona.setDocumento(sc.nextLine());
             System.out.print("Ingrese el correo del cliente: ");
