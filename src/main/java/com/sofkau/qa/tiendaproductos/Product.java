@@ -1,6 +1,8 @@
 package com.sofkau.qa.tiendaproductos;
 
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class Product {
     private String Id;
@@ -8,6 +10,7 @@ public class Product {
     private String description;
     public double price;
     public int stock;
+    private ArrayList<Product> producto;
 
     public Product(String id, String name, String description, double price, int stock) {
         Id = id;
@@ -57,9 +60,15 @@ public class Product {
         this.stock = stock;
     }
 
+    public void verProductos() {
+        this.producto = new ArrayList<>();
+
+    }
+
     @Override
     public String toString() {
         return this.Id + "-" +this.name;
     }
+
 
 }
