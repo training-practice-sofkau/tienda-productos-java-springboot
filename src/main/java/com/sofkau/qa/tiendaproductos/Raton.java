@@ -1,18 +1,27 @@
 package com.sofkau.qa.tiendaproductos;
 
-public class Raton extends DispositivoEntrada{
+public class Raton {
     private final int idRaton;
     private  static int contadorRaton;
+    private String tipoMause;
 
-    public Raton(String tipoEntrada, String marca) {
-        super(tipoEntrada, marca);
+    public Raton(String tipoMause) {
         this.idRaton = ++Raton.contadorRaton;
+        this.tipoMause = tipoMause;
+    }
+
+    public String tipoMause() {
+        return tipoMause;
+    }
+
+    public Raton setTipoMause(String tipoMause) {
+        this.tipoMause = tipoMause;
+        return this;
     }
 
     @Override
     public String toString() {
-        return "Raton{" +
-                "idRaton=" + idRaton + ", "+super.toString() +
+        return "{"+ "Tipo de mause: " + this.tipoMause +
                 '}';
     }
 }

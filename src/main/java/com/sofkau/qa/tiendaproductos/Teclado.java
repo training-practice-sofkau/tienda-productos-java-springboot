@@ -1,18 +1,18 @@
 package com.sofkau.qa.tiendaproductos;
 
-public class Teclado extends DispositivoEntrada{
+public class Teclado {
     private final int idTeclado;
     private  static int contadorTeclado;
+    private String tipoTeclado;
 
-    public Teclado(String tipoEntrada, String marca) {
-        super(tipoEntrada, marca);
+    public Teclado(String tipoTeclado) {
         this.idTeclado = ++Teclado.contadorTeclado;
+        this.tipoTeclado = tipoTeclado;
     }
 
     @Override
     public String toString() {
-        return "Teclado{" +
-                "id Teclado=" + idTeclado + ", "+super.toString() +
+        return   " Id Teclado :" + idTeclado + ",Teclado de tipo: "+this.tipoTeclado +
                 '}';
     }
 }
