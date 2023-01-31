@@ -44,12 +44,15 @@ public class Cliente {
         return facturas.isEmpty();
     }
 
-    public void verProductos(){
+    public void verProductos(double total){
         if(!productos.isEmpty()){
             for(ProductoCompra productoCompra:productos){
                 System.out.println(productoCompra.toString());
+                total=productoCompra.getPrecio()*productoCompra.getCantidad()+total;
             }
+            System.out.println("Total a pagar: "+total);
         }
+
     }
 
     public void aniadirProductoCompra(ProductoCompra productoCompra){

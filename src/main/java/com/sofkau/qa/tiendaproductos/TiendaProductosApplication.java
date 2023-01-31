@@ -30,6 +30,7 @@ public class TiendaProductosApplication implements CommandLineRunner {
 		int c=0;
 		int clientei;
 		int verificar;
+		double totalPagar=0;
 		String nombreProducto;
 		String nombreCliente;
 		int idCliente;
@@ -48,10 +49,10 @@ public class TiendaProductosApplication implements CommandLineRunner {
 		listaClientes.put(c2.getId(),c2);
 		listaClientes.put(c3.getId(),c3);
 
-		ProductoInventario p1=new ProductoInventario("Arroz",1,60);
-		ProductoInventario p2=new ProductoInventario("Lentejas",2,40);
-		ProductoInventario p3=new ProductoInventario("Gaseosa",3,10);
-		ProductoInventario p4=new ProductoInventario("Papitas",4,30);
+		ProductoInventario p1=new ProductoInventario("Arroz",1,60,200);
+		ProductoInventario p2=new ProductoInventario("Lentejas",2,40,300);
+		ProductoInventario p3=new ProductoInventario("Gaseosa",3,10,400);
+		ProductoInventario p4=new ProductoInventario("Papitas",4,30,500);
 
 		inventario.add(p1);
 		inventario.add(p2);
@@ -82,7 +83,7 @@ public class TiendaProductosApplication implements CommandLineRunner {
 							do {
 								System.out.println("Carrito");
 								if (!listaClientes.get(clientei).verificarCarrito()) {
-									listaClientes.get(clientei).verProductos();
+									listaClientes.get(clientei).verProductos(totalPagar);
 								} else {
 									System.out.println("Carrito vacio");
 								}
@@ -98,7 +99,7 @@ public class TiendaProductosApplication implements CommandLineRunner {
 									System.out.println("Ingrese la cantidad que desea comprar");
 									cantidadProducto = entrada.nextInt();
 									ProductoInventario productoInventarioAux = inventario.get(productoi);
-									ProductoCompra productoCompraAux = new ProductoCompra(productoInventarioAux.getNombre(), productoInventarioAux.getId(), cantidadProducto);
+									ProductoCompra productoCompraAux = new ProductoCompra(productoInventarioAux.getNombre(), productoInventarioAux.getId(), cantidadProducto, productoInventarioAux.getPrecio());
 									inventario.get(productoi).setCantidad(inventario.get(productoi).getCantidad() - cantidadProducto);
 
 									if (listaClientes.get(clientei).verificarProducto(productoCompraAux.getId())) {
@@ -111,7 +112,8 @@ public class TiendaProductosApplication implements CommandLineRunner {
 
 						break;
 						case 2:
-							Factura facturaAux=new Factura(idf, LocalDate.now(),listaClientes.get(clientei).getProductos());
+							LinkedList<ProductoCompra> carritoAux=(LinkedList<ProductoCompra>) listaClientes.get(clientei).getProductos().clone();
+							Factura facturaAux=new Factura(idf, LocalDate.now(),carritoAux);
 							System.out.println("Factura generada");
 							facturaAux.generarFactura();
 							listaClientes.get(clientei).aniadirFactura(facturaAux);
@@ -141,7 +143,7 @@ public class TiendaProductosApplication implements CommandLineRunner {
 						nombreProducto=entrada.next();
 						System.out.println("Ingrese la cantidad a aniadir");
 						cantidadProducto=entrada.nextInt();
-						inventario.add(new ProductoInventario(nombreProducto,idp,cantidadProducto));
+						inventario.add(new ProductoInventario(nombreProducto,idp,cantidadProducto,600));
 						idp=idp+1;
 					}else{
 						Iterator<ProductoInventario> i = inventario.iterator();
