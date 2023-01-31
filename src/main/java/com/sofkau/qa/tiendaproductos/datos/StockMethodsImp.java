@@ -23,9 +23,9 @@ public class StockMethodsImp implements StockMethods{
     @Override
     public void listar() {
         System.out.println("La lista de productos en el carrito de compras es: ");
-        for (Producto producto : productosStock){
+        productosStock.stream().forEach(producto -> {
             System.out.println(producto.getNombre());
-        }
+        });
     }
 
     @Override

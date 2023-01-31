@@ -8,6 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 @SpringBootApplication
@@ -44,6 +46,14 @@ public class TiendaProductosApplication {
 				case 1:
 					System.out.println("A continuación encuentras la lista de productos disponibles en la tienda");
 					productosStock.getStock();
+
+					System.out.println("Por favor escriba el nombre de los productos que desea adquirir, seguido por\n" +
+							"el numero de unidades; separados por coma y sin espacios");
+
+					String[] listaProductosCliente = line.nextLine().split(",");
+
+					String nombreProducto = listaProductosCliente[0];
+
 
 			}
 

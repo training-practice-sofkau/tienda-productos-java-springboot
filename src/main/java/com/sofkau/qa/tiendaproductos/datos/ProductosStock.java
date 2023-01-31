@@ -4,11 +4,12 @@ import com.sofkau.qa.tiendaproductos.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
 public class ProductosStock {
+    /**
+     * Se utiliza la anotación Autowired para crear una instancia de StockMethods y así poder
+     * utilizar los métodos definidos en la interfaz
+     */
     @Autowired
     public StockMethods stockMethods;
     Producto guantes = new Producto("Guantes", 20000);
@@ -37,7 +38,6 @@ public class ProductosStock {
 
         // Se imprime la lista de productos en Stock
         stockMethods.listar();
-
     }
 
 }
