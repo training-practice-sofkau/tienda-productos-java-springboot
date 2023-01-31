@@ -7,6 +7,13 @@ public class Catalogo implements Produccion{
     public void addProducto(Producto producto){
         BaseDeDatos.getBaseDeDatos().addProducto(producto);
     }
+    public void mostrarProducto(int producto){
+        Producto impresion=BaseDeDatos.getBaseDeDatos().getProductos().get(producto);
+        System.out.println("Nombre: "+impresion.getNombre()+
+                "\nCantidad disponible: "+impresion.getCantidad()+
+                "\nPrecio: "+impresion.getPrecio()+
+                "\nDescripción: "+impresion.getDescripcion());
+    }
     public void mostrarProductos(){
         BaseDeDatos.getBaseDeDatos().getProductos().stream().forEach(producto -> {
             System.out.println("Nombre: "+producto.getNombre()+
@@ -21,5 +28,6 @@ public class Catalogo implements Produccion{
             i++;
             System.out.println(i+" Nombre: "+producto.getNombre());
         }
+        System.out.println();
     }
 }
