@@ -1,18 +1,16 @@
 package com.sofkau.qa.tiendaproductos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Cliente {
     private String nombre;
-    private String apellido;
     private String id;
-    private List<CarritoCompra> cCompras;
+    private List<CarritoCompra> cCompras = new ArrayList<>();
 
-    public Cliente(String nombre, String apellido, String id, List<CarritoCompra> cCompras) {
+    public Cliente(String nombre, String id) {
         this.nombre = nombre;
-        this.apellido = apellido;
         this.id = id;
-        this.cCompras = cCompras;
     }
 
     public String getNombre() {
@@ -21,14 +19,6 @@ public class Cliente {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
     }
 
     public String getId() {

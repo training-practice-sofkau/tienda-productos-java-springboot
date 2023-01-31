@@ -1,9 +1,14 @@
 package com.sofkau.qa.tiendaproductos;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 
 public class CarritoCompra {
-    Map<String, Producto> listaCompras = new HashMap<String, Producto>();
-    
+    private String cliente;
+    private ArrayList<Compra> compras;
+
+
+    public CarritoCompra(String cliente, ArrayList<Compra> compras) {
+        this.cliente = cliente;
+        this.compras = compras;
+    }
 }
