@@ -1,33 +1,37 @@
 package com.sofkau.qa.tiendaproductos;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class Factura {
     int idProducto;
     String nombreCliente;
-    int valorTotal;
+    private int valorTotal;
     Date fecha;
-    List<Integer> idFactProducto;
+    Map<Producto, Integer> productos;
 
-    public Factura() {
-        idFactProducto = new ArrayList<>();
-    }
-
-    public Factura(String nombreCliente, int valorTotal) {
-        this();
+    public Factura(String nombreCliente)
+    {
         fecha = new Date();
         this.nombreCliente = nombreCliente;
-        this.valorTotal = valorTotal;
+        productos = new HashMap<Producto, Integer>();
     }
 
     public int getIdProducto() {
         return idProducto;
     }
 
-    public void setIdProducto(int idProducto) {
+    public void añadirProducto(Producto producto, int cantidad) {
         this.idProducto = idProducto;
+        var productoEnCarrito = productos.containsKey(producto);
+
+        if(productoEnCarrito)
+        {
+            productos.put(producto, productos.get(producto) + 1);
+        }
+        else{
+            productos.put(producto, cantidad);
+        }
+
     }
 
     public String getNombreCliente() {
@@ -39,18 +43,22 @@ public class Factura {
     }
 
     public int getValorTotal() {
+        int valorTotal = 0;
+
+        for (Map.Entry<Producto, Integer> set : productos.entrySet())
+        {
+            valorTotal += set.getKey().getPrecioUnit() * set.getValue();
+        }
+
         return valorTotal;
     }
 
-    public void setValorTotal(int valorTotal) {
-        this.valorTotal = valorTotal;
-    }
-    public void generarFactura(){
-        System.out.println("FACTURA:");
-        System.out.println("Nombre cliente: " + getNombreCliente());
-        System.out.println("Id del producto: " + getIdProducto());
-        System.out.println("TOTAL: " + getValorTotal());
-        System.out.println("FECHA: " + fecha);
+
+    public String generarFactura()
+    {
+        this.valorTotal =  getValorTotal();
+
+        return "La factura se genero para el cliente: " + this.getNombreCliente() + ", por un valor de: " + this.valorTotal;
     }
 
     @Override

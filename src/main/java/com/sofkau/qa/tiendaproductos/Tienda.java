@@ -2,36 +2,70 @@ package com.sofkau.qa.tiendaproductos;
 
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class Tienda {
 
-    public List<Producto> listaProductos;
+    public List<Factura> listaDeFacturas;
+    public Map<Producto, Integer> listaProductos;
 
     public Tienda() {
-        this.listaProductos = new ArrayList<>();
+        this.listaProductos = new HashMap<Producto, Integer>();
+        this.listaDeFacturas = new ArrayList<>();
     }
     public void nombrarProductos(){
-        listaProductos.stream().forEach(producto -> {
-            System.out.println("Nombre producto: " + producto.getNombre());
-            System.out.println("Precio del producto: " + producto.getPrecioUnit());
-            System.out.println("Cantidad en stock: " + producto.getIdProducto());
-        });
+
+        listaProductos.forEach(
+                (key, value)
+                        ->  System.out.println("Nombre producto: " + key.getNombre() + ", Cantidad en stock:" + value)
+        );
+
     }
+
     public void anadirProducto(Producto producto){
-        listaProductos.add(producto);
-    }
-    public void comprarProducto(Producto producto){
-        if (listaProductos.size() > 0) {
-            System.out.println("Hay productos disponibles");
-            listaProductos.remove(producto);
-            producto.setIdProducto(producto.idProducto);
-            producto.setNombre(producto.nombre);
-            producto.setPrecioUnit(producto.precioUnit);
-            System.out.println("Compra exitosa");
-        }else {System.out.println("No hay productos disponibles");
+        var productoEnStock = listaProductos.containsKey(producto);
+
+        if(productoEnStock)
+        {
+            listaProductos.put(producto, listaProductos.get(producto) + 1);
         }
+        else{
+            listaProductos.put(producto, 1);
+        }
+    }
+
+    public void removerProducto(Producto producto){
+        var productoEnStock = listaProductos.containsKey(producto);
+
+        if(productoEnStock)
+        {
+            listaProductos.put(producto, listaProductos.get(producto) - 1);
+        }
+    }
+    public void comprarProducto(Factura factura, Producto producto, Integer cantidad){
+        if (listaProductos.size() > 0)
+        {
+            var productoEnStock = listaProductos.containsKey(producto);
+            if(productoEnStock == false) System.out.println("El producto seleccionado no esta disponible");
+
+            System.out.println("Hay productos disponibles");
+            removerProducto(producto);
+            factura.añadirProducto(producto, cantidad);
+
+            System.out.println("Producto añadido");
+
+        }
+        else {System.out.println("No hay productos disponibles");
+        }
+    }
+
+    public void finalizarCompra(Factura factura){
+
+        System.out.println(factura.generarFactura());
+        listaDeFacturas.add(factura);
     }
 
     @Override
