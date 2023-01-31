@@ -19,7 +19,7 @@ Catalogo {
 
     public void mostrarCatalogo(){
         productosList.stream().forEach(productoList -> {
-            System.out.println("Producto" + productoList.getNombre());
+            System.out.println( "* "+ productoList.nombre + ": "+ productoList.descripcion + " - Cantidad: "+ productoList.cantidad + ", Precio: "+ productoList.getPrecio() + "$");
         });
 
 

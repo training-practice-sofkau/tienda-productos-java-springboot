@@ -28,16 +28,6 @@ public class VistaUsuario {
                     System.out.println("\tCatalogo Fashion");
                     System.out.println("===========================");
 
-                    Producto producto1 = new Producto("1","1",1,1.0);
-                    Producto producto2 = new Producto("1","1",1,1.0);
-
-                    catalogo.addProductoaCatalogo(producto1);
-                    catalogo.addProductoaCatalogo(producto2);
-                    System.out.println(catalogo);
-
-
-
-
                     break;
                 // Caso 2 para realizar compra de producto(s)
                 case 2:
