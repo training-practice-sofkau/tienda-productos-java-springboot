@@ -53,8 +53,11 @@ public class TiendaProductosApplication {
 					String[] listaProductosCliente = line.nextLine().split(",");
 
 					String nombreProducto = listaProductosCliente[0];
+					// TODO: crear instancias, tomando como parametros de entrada el texto ingresado por el usuario
 
+					break;
 
+					// TODO: crear el menu para la opción 2 de listar los productos comprados en la sesión actual
 			}
 
 		};
