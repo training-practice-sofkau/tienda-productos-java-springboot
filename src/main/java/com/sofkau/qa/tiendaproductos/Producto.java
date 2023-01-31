@@ -22,11 +22,6 @@ public class Producto {
         this.stock = stock;
     }
 
-    public void comprarProducto(){
-        Scanner entrada = new Scanner(System.in);
-
-    }
-
     /**
      * Métodos getters y setters
      */

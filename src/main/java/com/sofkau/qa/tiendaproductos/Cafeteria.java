@@ -4,17 +4,20 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 @Service
 public class Cafeteria {
     public List<Producto> productoList;
     public List<Producto> productoEnStock;
+    private ArrayList<Factura> facturas;
 
     /**
      * Constructor
      */
     public Cafeteria(){
         this.productoList = new ArrayList<>();
+        this.facturas = new ArrayList<>();
     }
 
     /**
@@ -30,6 +33,8 @@ public class Cafeteria {
                 productoEnStock.add(prod);
             }
         }
+
+        int indice = 1;
 
         for (Producto prod : productoEnStock){
             System.out.println("Producto: " + prod.getNombreProducto() + "\n"
@@ -47,6 +52,21 @@ public class Cafeteria {
     public void agregarProductos(Producto producto){
         System.out.println("Producto añadido: " + producto.getNombreProducto());
         productoList.add(producto);
+    }
+
+    public void iniciarCompra (){
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Nombre del cliente: ");
+        String nombreCliente = entrada.nextLine();
+
+        Factura factura = new Factura(nombreCliente);
+
+        this.mostrarProductos();
+
+        boolean comprando = true;
+        while (comprando){
+            System.out.println("¿Qué producto deseas? ");
+        }
     }
 
     @Override
