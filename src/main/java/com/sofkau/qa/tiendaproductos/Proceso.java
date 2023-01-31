@@ -11,6 +11,7 @@ public class Proceso {
 
 	@Autowired
 	public Tienda tienda;
+	public Factura factura;
 	public static void main(String[] args) {
 		SpringApplication.run(Proceso.class, args);
 	}
@@ -39,11 +40,23 @@ public class Proceso {
 			tienda.anadirProducto(Producto9);
 			tienda.anadirProducto(Producto10);
 
-			System.out.println("Actualización de productos en stock: " + tienda.listaProductos.size());
+			System.out.println("Productos en stock: " + tienda.listaProductos.size());
 			System.out.println(tienda);
 
-			tienda.comprarProducto(Producto1);
-		};
+				System.out.println("Lista de productos");
+				tienda.nombrarProductos();
+
+				System.out.println("------------PROCESO DE COMPRA------------");
+				System.out.println("¿Que producto desea comprar?");
+				tienda.comprarProducto(Producto7);
+				System.out.println("Actualización productos en stock: " + tienda.listaProductos.size());
+
+				System.out.println("------------GENERAR FACTURA-----------");
+				System.out.println("¿Cual es su nombre?");
+				factura.setNombreCliente("Carlos Perez");
+				System.out.println(factura);
+				System.out.println("Factura entregada con exito");
+		} ;
 	};
 
 }

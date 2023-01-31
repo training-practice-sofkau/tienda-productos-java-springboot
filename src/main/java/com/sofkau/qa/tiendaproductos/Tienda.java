@@ -25,6 +25,11 @@ public class Tienda {
     public void comprarProducto(Producto producto){
         if (listaProductos.size() > 0) {
             System.out.println("Hay productos disponibles");
+            listaProductos.remove(producto);
+            producto.setIdProducto(producto.idProducto);
+            producto.setNombre(producto.nombre);
+            producto.setPrecioUnit(producto.precioUnit);
+            System.out.println("Compra exitosa");
         }else {System.out.println("No hay productos disponibles");
         }
     }
