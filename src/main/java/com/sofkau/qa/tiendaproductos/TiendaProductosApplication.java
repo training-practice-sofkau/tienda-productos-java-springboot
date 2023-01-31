@@ -39,14 +39,15 @@ public class TiendaProductosApplication {
              */
             Scanner sc = new Scanner(System.in);
             ArrayList<Producto> productos = new ArrayList<Producto>();
-            productos.add(new Producto("Carburador", 10, 10));
-            productos.add(new Producto("Tanque", 20, 20));
-            productos.add(new Producto("Manubrio ", 30, 30));
+            productos.add(new Producto("Carburador", 10000, 10));
+            productos.add(new Producto("Tanque", 20000, 20));
+            productos.add(new Producto("Manubrio ", 30000, 30));
 
             System.out.println("Bienvenido a la Tienda Moto Racer");
             System.out.println("Productos disponibles: ");
             for (int i = 0; i < productos.size(); i++) {
-                System.out.println((i + 1) + ") " + productos.get(i).getNombre());
+                System.out.println((i + 1) + ") " + productos.get(i).getNombre() + " : "
+                        + " El Precio es : " + productos.get(i).getPrecio());
             }
 
             Persona persona = new Persona();
@@ -70,13 +71,15 @@ public class TiendaProductosApplication {
                 Producto producto = productos.get(seleccion - 1);
                 factura.agregarProducto(new Producto(producto.getNombre(), producto.getPrecio(), cantidad));
                 System.out.print("Desea seguir comprando? (si/no): ");
-                sc.nextLine();
+                opcion = sc.nextLine();
 
-                break;
+                if (opcion.equalsIgnoreCase("no")) {
+                    break;
+                }
             }
 
             System.out.println("Factura");
-            System.out.println("Cliente: " + persona);
+            System.out.println("Cliente: " + persona.getNombre() + persona.getDocumento() + persona.getCorreo());
             System.out.println("Fecha: " + factura.getFecha());
             System.out.println("Productos: ");
             for (Producto producto : factura.getProductos()) {
