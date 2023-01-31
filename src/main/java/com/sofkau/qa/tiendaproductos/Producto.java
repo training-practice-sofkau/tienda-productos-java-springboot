@@ -1,9 +1,14 @@
 package com.sofkau.qa.tiendaproductos;
+import java.util.Scanner;
 
 public class Producto {
     private String nombreProducto;
     private int valor;
     private int stock;
+
+    public Producto(){
+
+    }
 
     /**
      * Constructor
@@ -15,6 +20,11 @@ public class Producto {
         this.nombreProducto = nombreProducto;
         this.valor = valor;
         this.stock = stock;
+    }
+
+    public void comprarProducto(){
+        Scanner entrada = new Scanner(System.in);
+
     }
 
     /**
@@ -46,8 +56,9 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Nombre del producto: " + nombreProducto + "\n" +
-                "Valor: " + valor + "\n" +
+        return "Lista de productos: \n" +
+                "Nombre del producto: " + nombreProducto + "\n" +
+                "Valor: " + "$"+ valor + "\n" +
                 "Cantidad: " + stock + "\n";
     }
 }

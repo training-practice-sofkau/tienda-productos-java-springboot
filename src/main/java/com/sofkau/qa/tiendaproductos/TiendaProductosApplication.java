@@ -5,10 +5,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import java.util.Scanner;
 
 @SpringBootApplication
 public class TiendaProductosApplication {
 
+	/**
+	 * @Autowired Quien decide cuando se debe instanciar un objeto
+	 */
 	@Autowired
 	public Cafeteria cafeteria;
 	public static void main(String[] args) {
@@ -18,19 +22,79 @@ public class TiendaProductosApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(){
 		return args -> {
-			System.out.println("Cantidad de productos iniciales: " + cafeteria.productoList.size());
-			Producto cafe = new Producto("Café", 2000, 10);
-			Producto leche = new Producto("Leche", 5000, 6);
-			Producto canela = new Producto("Canela", 3500, 11);
-			Producto lecheAlmendras = new Producto("leche de almendras", 5000,9);
+			/**
+			 * Instancias de productos
+			 */
+			//System.out.println("Cantidad de productos iniciales: " + cafeteria.productoList.size());
+			Producto cafe = new Producto("Café americano", 2000, 0);
+			Producto mocha = new Producto("Café mocha", 5000, 15);
+			Producto espresso = new Producto("Café espresso", 3500, 20);
+			Producto cappuccino = new Producto("Cappuccino", 5000,21);
+			Producto latte = new Producto("Café latte", 40000, 15);
+			Producto coldbrew = new Producto("Cold Brew", 8000, 25);
 
 			cafeteria.agregarProductos(cafe);
-			cafeteria.agregarProductos(leche);
-			cafeteria.agregarProductos(canela);
-			cafeteria.agregarProductos(lecheAlmendras);
+			cafeteria.agregarProductos(mocha);
+			cafeteria.agregarProductos(espresso);
+			cafeteria.agregarProductos(cappuccino);
+			cafeteria.agregarProductos(latte);
+			cafeteria.agregarProductos(coldbrew);
 
-			System.out.println("Cantidad de productos finales: " + cafeteria.productoList.size());
-			System.out.println(cafeteria.toString());
+			/**
+			 * Instancias
+			 */
+			Factura cliente = new Factura();
+			cliente.getNombreCliente();
+
+			Factura factura = new Factura();
+
+			Producto producto = new Producto();
+
+			//System.out.println("Cantidad de productos finales: " + cafeteria.productoList.size());
+
+			Scanner entrada = new Scanner(System.in);
+			boolean ejecutarMenu = true;
+
+			/**
+			 * Menú principal de la aplicación
+			 */
+			while (ejecutarMenu) {
+				System.out.println("---Bienvenido(a) a la cafetería---");
+				System.out.println("Selecciona una opción");
+				System.out.println("1. Mostrar productos");
+				System.out.println("2. Comprar productos");
+				System.out.println("3. Visualizar registro de compras");
+				System.out.println("4. Generar factura");
+				System.out.println("5. Salir");
+				int opcion = entrada.nextInt();
+
+				switch (opcion){
+					case 1:
+						cafeteria.mostrarProductos();
+						break;
+
+					case 2:
+						producto.comprarProducto();
+						break;
+
+					case 3:
+
+						break;
+
+					case 4:
+						factura.generarFactura();
+						break;
+
+					case 5:
+						System.out.println("¡Hasta pronto!");
+						ejecutarMenu = false;
+						break;
+
+					default:
+						System.out.println("Opción inválida");
+				}
+
+			}
 		};
 	}
 }
