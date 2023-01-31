@@ -1,0 +1,35 @@
+package com.sofkau.qa.tiendaproductos.datos;
+
+import com.sofkau.qa.tiendaproductos.Producto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class StockMethodsImp implements StockMethods{
+    List<Producto> productosStock = new ArrayList<>();
+    @Override
+    public void agregar(Producto producto) {
+        productosStock.add(producto);
+    }
+
+    @Override
+    public void eliminar(Producto producto) {
+        productosStock.remove(producto);
+    }
+
+    @Override
+    public void listar() {
+        System.out.println("La lista de productos en el carrito de compras es: ");
+        for (Producto producto : productosStock){
+            System.out.println(producto.getNombre());
+        }
+    }
+
+    @Override
+    public List<Producto> getListaStock() {
+        return this.productosStock;
+    }
+}
