@@ -28,40 +28,64 @@ public class TiendaProductosApplication {
     public CommandLineRunner commandLineRunner() {
 
         return args -> {
+
+            /**
+             * realizo el metodo main para realiza la compra
+             */
+
+
+            /**
+             * Tienda de Motos
+             */
             Scanner sc = new Scanner(System.in);
-            Factura factura = new Factura("Cliente1", "01/01/2023");
-            ArrayList<Producto> productos = new ArrayList<>();
+            ArrayList<Producto> productos = new ArrayList<Producto>();
+            productos.add(new Producto("Producto 1", 10, 10));
+            productos.add(new Producto("Producto 2", 20, 20));
+            productos.add(new Producto("Producto 3", 30, 30));
 
-            // Agregar productos a la lista
-            productos.add(new Producto("Llanta", 100.0, 10));
-            productos.add(new Producto("Freno", 200.0, 5));
-            productos.add(new Producto("Amortiguador", 150.0, 8));
+            System.out.println("Bienvenido a la Tienda Moto Racer");
+            System.out.println("Productos disponibles: ");
+            for (int i = 0; i < productos.size(); i++) {
+                System.out.println((i + 1) + ") " + productos.get(i));
+            }
 
-            boolean continuar = true;
+            Persona persona = new Persona();
+            System.out.print("Ingrese el nombre del cliente: ");
+            persona.setNombre(sc.nextLine());
+            System.out.print("Ingrese el apellido del cliente: ");
+            persona.setApéllido(sc.nextLine());
+            System.out.print("Ingrese el documento del cliente: ");
+            persona.setDocumento(sc.nextLine());
+            System.out.print("Ingrese el correo del cliente: ");
+            persona.setCorreo(sc.nextLine());
 
-            while (continuar) {
-                System.out.println("Productos disponibles:");
-                for (int i = 0; i < productos.size(); i++) {
-                    System.out.println((i + 1) + ". " + productos.get(i).getNombre());
-                }
+            Factura factura = new Factura(persona.getNombre() + " " + persona.getApéllido(), "01/01/2023");
 
-                System.out.print("Seleccione un producto (0 para salir): ");
-                int opcion = sc.nextInt();
+            String opcion = "";
+            while (!opcion.equalsIgnoreCase("salir")) {
+                System.out.print("Seleccione un producto (1, 2, 3): ");
+                int seleccion = sc.nextInt();
+                sc.nextLine();
+                System.out.print("Cantidad a comprar: ");
+                int cantidad = sc.nextInt();
+                sc.nextLine();
+                Producto producto = productos.get(seleccion - 1);
+                factura.agregarProducto(new Producto(producto.getNombre(), producto.getPrecio(), cantidad));
+                System.out.print("Desea seguir comprando? (si/no): ");
                 sc.nextLine();
 
-                if (opcion == 0) {
-                    continuar = false;
-                } else if (opcion > 0 && opcion <= productos.size()) {
-                    Producto producto = productos.get(opcion - 1);
-                    System.out.print("Ingrese la cantidad que desea comprar: ");
-                    int cantidad = sc.nextInt();
-                    sc.nextLine();
-                    producto.setCantidad(cantidad);
-                    factura.agregarProducto(producto);
-                } else {
-                    System.out.println("Opción inválida, intente de nuevo.");
-                }
+                break;
             }
+
+            System.out.println("Factura");
+            System.out.println("Cliente: " + persona);
+            System.out.println("Fecha: " + factura.getFecha());
+            System.out.println("Productos: ");
+            for (Producto producto : factura.getProductos()) {
+                System.out.println(producto + " Total: " + (producto.getPrecio() * producto.getCantidad()));
+            }
+            System.out.println("Total a pagar: " + factura.calcularTotal());
+
         };
     }
 }

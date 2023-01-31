@@ -15,10 +15,36 @@ public class Factura {
     public Factura() {
     }
 
+
     public Factura(String cliente, String fecha) {
         this.cliente = cliente;
         this.fecha = fecha;
         productos = new ArrayList<Producto>();
+    }
+
+
+    public ArrayList<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(ArrayList<Producto> productos) {
+        this.productos = productos;
+    }
+
+    public String getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(String cliente) {
+        this.cliente = cliente;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
     public void agregarProducto(Producto producto) {
@@ -33,6 +59,12 @@ public class Factura {
         return total;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Factura{" +
+                "productos=" + productos +
+                ", cliente='" + cliente + '\'' +
+                ", fecha='" + fecha + '\'' +
+                '}';
+    }
 }
