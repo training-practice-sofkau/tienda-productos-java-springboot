@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
-import java.security.Key;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -27,8 +26,6 @@ public class Tienda {
     @Bean
     public CommandLineRunner commandLineRunner(){
         return args -> {
-
-
             int opc;
             do {
                 System.out.println("_____________________MUEBLES LS_________________-");
