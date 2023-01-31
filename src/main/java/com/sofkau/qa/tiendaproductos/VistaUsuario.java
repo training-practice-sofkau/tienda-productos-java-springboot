@@ -1,8 +1,14 @@
 package com.sofkau.qa.tiendaproductos;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.Scanner;
 
-public class InterfazUsuario {
+public class VistaUsuario {
+    @Autowired
+    private Producto producto;
+    @Autowired
+    public static Catalogo catalogo;
     public static void menu() {
 
         int response = 0;
@@ -21,6 +27,16 @@ public class InterfazUsuario {
                 case 1:
                     System.out.println("\tCatalogo Fashion");
                     System.out.println("===========================");
+
+                    Producto producto1 = new Producto("1","1",1,1.0);
+                    Producto producto2 = new Producto("1","1",1,1.0);
+
+                    catalogo.addProductoaCatalogo(producto1);
+                    catalogo.addProductoaCatalogo(producto2);
+                    System.out.println(catalogo);
+
+
+
 
                     break;
                 // Caso 2 para realizar compra de producto(s)
@@ -46,5 +62,7 @@ public class InterfazUsuario {
 
         } while (response != 0);
     }
+
+
 
 }
