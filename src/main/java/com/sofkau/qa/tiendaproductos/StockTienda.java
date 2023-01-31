@@ -5,9 +5,9 @@ import java.util.List;
 
 public class StockTienda {
 
-    public List<Producto> mostrarStock(){
+    private List<Producto> stock= new ArrayList<>();
 
-        List<Producto> stock = new ArrayList<Producto>();
+    public List<Producto> getProductos(){
 
         stock.add(new Producto(1,"Tomate", 1990, 80 ));
         stock.add(new Producto(2, "Papa", 1490, 100 ));
@@ -28,5 +28,6 @@ public class StockTienda {
         return stock;
 
     }
+
 
 }

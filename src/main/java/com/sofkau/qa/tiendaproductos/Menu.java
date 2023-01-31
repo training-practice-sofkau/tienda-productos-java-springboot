@@ -17,7 +17,7 @@ public class Menu {
                 switch (opcion) {
                     case 1:
                         StockTienda mostrarProductos = new StockTienda();
-                        mostrarProductos.mostrarStock();
+                        mostrarProductos.getProductos();
                         break;
                     case 2:
                         Comprar comprarProductos = new Comprar();
