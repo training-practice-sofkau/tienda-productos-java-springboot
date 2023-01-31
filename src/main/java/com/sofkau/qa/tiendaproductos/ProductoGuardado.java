@@ -9,6 +9,8 @@ import java.util.List;
 @Service
 @Component
 public class ProductoGuardado {
+
+    // Lista de productos estáticos que se ofrecen
     private static List<Producto> productos = Arrays.asList(
             new Producto("iPhone 12 Pro", 1200000),
             new Producto("MacBook Pro", 1100000),
@@ -22,7 +24,9 @@ public class ProductoGuardado {
             new Producto("Monitor LG", 700000)
     );
 
+    // Método para obtener la lista completa de productos
     public static List<Producto> getAllProductos() {
         return productos;
     }
 }
+

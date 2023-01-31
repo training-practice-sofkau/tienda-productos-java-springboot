@@ -1,4 +1,5 @@
 package com.sofkau.qa.tiendaproductos;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,13 +10,18 @@ import java.util.Scanner;
 
 @SpringBootApplication
 public class TiendaProductosApplication {
+	@Autowired
+	private static ProductoGuardado ProductoGuardado;
+	@Autowired
+	private static FacturasGuardadas FacturasGuardadas;
 
 	public static void main(String[] args) {
 		SpringApplication.run(TiendaProductosApplication.class, args);
 	}
-	@Bean
+	@Bean // indica que el método se comporta como un Bean y está disponible para ser inyectado en otras clases.
 	public CommandLineRunner commandLineRunner() {
 		return args -> {
+			// Bucle para continuar la ejecución del programa mientras se desee
 			boolean continueShopping = true;
 			while (continueShopping) {
 				System.out.println("Bienvenido a la tienda sofka!");
@@ -24,20 +30,28 @@ public class TiendaProductosApplication {
 						"2. Ver Registro de Facturas\n" +
 						"3. Salir");
 
+				// Lectura de la opción seleccionada por el usuario
 				Scanner scanner = new Scanner(System.in);
 				String choice = scanner.nextLine();
 
+				// Verificación de la opción seleccionada por el usuario
 				if (choice.equals("1")) {
 					System.out.println("Escriba su nombre para la factura:");
+					// Lectura del nombre del comprador
 					String name = scanner.nextLine();
+					// Obtener todos los productos disponibles
 					List<Producto> products = ProductoGuardado.getAllProductos();
 					System.out.println("Productos disponibles:");
+					// Imprimir la lista de productos disponibles
 					for (int i = 0; i < products.size(); i++) {
 						System.out.println(i + 1 + ". " + products.get(i).getNombre() + ", precio: " + products.get(i).getPrecio());
 					}
+					// Creación de una lista para almacenar los productos comprados
 					List<ProductoOrdernado> orders = new ArrayList<>();
 					while (true) {
 						System.out.println("Seleccione un producto o presione [0] para terminar la compra:");
+						// Lectura del índice del producto seleccionado o si desea terminar el programa
+
 						int productIndex = scanner.nextInt();
 						if (productIndex == 0) {
 							break;
