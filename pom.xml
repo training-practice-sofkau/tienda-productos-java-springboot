@@ -27,6 +27,16 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+        <dependency>
+            <groupId>xyz.scootaloo</groupId>
+            <artifactId>JConsoleApplication</artifactId>
+            <version>0.3.3</version>
+        </dependency>
+		<dependency>
+			<groupId>es.ucm.fdi.grasia.faerie.demos</groupId>
+			<artifactId>teacherFinding.consoleApplication</artifactId>
+			<version>1.2.9</version>
+		</dependency>
 	</dependencies>
 
 	<build>
