@@ -40,18 +40,6 @@ public class TiendaProductosApplication {
 			cafeteria.agregarProductos(latte);
 			cafeteria.agregarProductos(coldbrew);
 
-			/**
-			 * Instancias
-			 */
-			Factura cliente = new Factura();
-			cliente.getNombreCliente();
-
-			Factura factura = new Factura();
-
-			Producto producto = new Producto();
-
-			//System.out.println("Cantidad de productos finales: " + cafeteria.productoList.size());
-
 			Scanner entrada = new Scanner(System.in);
 			boolean ejecutarMenu = true;
 
@@ -74,15 +62,15 @@ public class TiendaProductosApplication {
 						break;
 
 					case 2:
-						producto.comprarProducto();
+						cafeteria.iniciarCompra();
 						break;
 
 					case 3:
-
+						cafeteria.imprimirHistorialVentas();
 						break;
 
 					case 4:
-						factura.generarFactura();
+						cafeteria.generarFactura();
 						break;
 
 					case 5:

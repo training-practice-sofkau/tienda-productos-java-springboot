@@ -52,4 +52,8 @@ public class Factura {
     public void setNombreCliente(String nombreCliente) {
         this.nombreCliente = nombreCliente;
     }
+
+    public double getTotal(){
+        return this.total;
+    }
 }
