@@ -3,7 +3,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 @Service
-public class BaseDeDatos{
+public class BaseDeDatos implements Produccion{
     private List<Factura> facturas;
     private Producto productos[];
     private BaseDeDatos() {
@@ -19,4 +19,9 @@ public class BaseDeDatos{
     public Producto[] getProductos(){
         return productos;
     }
+    @Override
+    public void addProducto(int posicion,Producto producto){
+        this.productos[posicion]=producto;
+    }
+
 }

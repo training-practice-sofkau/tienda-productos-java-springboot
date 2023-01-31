@@ -1,6 +1,7 @@
 package com.sofkau.qa.tiendaproductos;
 public class Cliente {
     private String nombre,id;
+    private Long dinero;
     public String getId() {
         return id;
     }
