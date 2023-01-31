@@ -59,11 +59,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "Id='" + Id + '\'' +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                '}';
+        return this.Id + "-" +this.name;
     }
+
 }

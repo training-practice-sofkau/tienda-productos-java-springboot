@@ -10,10 +10,19 @@ import java.util.List;
 public class Store {
 
     private List<PurchaseOrder> purchaseOrdersList;
+    private List<Product> productList;
 
 
-    public void HistoricalList(PurchaseOrder purchaseOrdersList) {
-        ArrayList<PurchaseOrder> purchaseOrders = new ArrayList<PurchaseOrder>();
+    public Store(List<PurchaseOrder> purchaseOrdersList) {
+        this.purchaseOrdersList = new ArrayList<PurchaseOrder>();
+    }
+
+    public void HistoricalList() {
+       System.out.println("Lista de facturas ");
+       this.purchaseOrdersList.stream().forEach(purchaseOrder -> {
+           System.out.println( purchaseOrder.getId() + " " + purchaseOrder.getClient().getName() +
+                    " " + purchaseOrder.getTotalAmount());
+        });
     }
 
     public void addOrder(PurchaseOrder purchase){
@@ -26,5 +35,13 @@ public class Store {
 
     public void setPurchaseOrdersList(List<PurchaseOrder> purchaseOrdersList) {
         this.purchaseOrdersList = purchaseOrdersList;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Store{" +
+                "purchaseOrdersList=" + purchaseOrdersList +
+                '}';
     }
 }
