@@ -51,8 +51,8 @@ public class TiendaProductosApplication {
 				System.out.println("Selecciona una opción");
 				System.out.println("1. Mostrar productos");
 				System.out.println("2. Comprar productos");
-				System.out.println("3. Visualizar registro de compras");
-				System.out.println("4. Generar factura");
+				System.out.println("3. Generar factura");
+				System.out.println("4. Visualizar registro de compras");
 				System.out.println("5. Salir");
 				int opcion = entrada.nextInt();
 
@@ -66,11 +66,11 @@ public class TiendaProductosApplication {
 						break;
 
 					case 3:
-						cafeteria.imprimirHistorialVentas();
+						cafeteria.generarFactura();
 						break;
 
 					case 4:
-						cafeteria.generarFactura();
+						cafeteria.imprimirHistorialVentas();
 						break;
 
 					case 5:
