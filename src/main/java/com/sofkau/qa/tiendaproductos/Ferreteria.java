@@ -9,19 +9,28 @@ import java.util.List;
 public class Ferreteria {
 
     public List<Producto> productoList;
-
+    public List<Producto> productoStock;
     public Ferreteria() {
         this.productoList = new ArrayList<>();
-    }
-
-    public void mostrarProductos() {
-        productoList.stream().forEach(producto -> {
-            System.out.println(producto.getNombre() + "." + "\nprecio $" + producto.getPrecio() + "\nStock: " + producto.getStock() + "\n");
-        });
     }
 
     public void agregarProductos(Producto producto) {
         productoList.add(producto);
     }
+
+    public void productosDisponibles() {
+        this.productoStock = new ArrayList<>();
+
+        for (Producto p : productoList) {
+            if (p.getStock() > 0) {
+                productoStock.add(p);
+            }
+        }
+
+        productoStock.stream().forEach(p -> {
+            System.out.println(p.getNombre() + "." + "\nprecio $" + p.getPrecio() + "\nStock: " + p.getStock() + "\n");
+        });
+    }
+
 
 }
