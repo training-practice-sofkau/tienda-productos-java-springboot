@@ -16,7 +16,7 @@ public class Producto {
                 "nombre='" + nombre + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", cantidad=" + cantidad +
-                ", precio1=" + precio +
+                ", precio2=" + precio +
                 '}';
     }
 
