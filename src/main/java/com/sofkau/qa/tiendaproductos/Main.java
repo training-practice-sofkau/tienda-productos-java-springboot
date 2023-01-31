@@ -100,7 +100,7 @@ public class Main {
                 System.out.println("Gracias por utilizar nuestro sistema");
                 break;
             } else {
-                System.out.println("Opcion no valida");
+                System.out.println("Opcionno valida");
             }
         }
     }
