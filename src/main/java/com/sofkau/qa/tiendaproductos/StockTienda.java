@@ -5,7 +5,7 @@ import java.util.List;
 
 public class StockTienda {
 
-    public void mostrarStock(){
+    public List<Producto> mostrarStock(){
 
         List<Producto> stock = new ArrayList<Producto>();
 
@@ -24,8 +24,8 @@ public class StockTienda {
             System.out.println(" "+ p.getId()+ "  " + p.getNombre());
 
         }
-
         System.out.println("--------------------------- ");
+        return stock;
 
     }
 

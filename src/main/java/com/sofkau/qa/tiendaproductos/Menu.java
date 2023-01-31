@@ -20,7 +20,8 @@ public class Menu {
                         mostrarProductos.mostrarStock();
                         break;
                     case 2:
-                        // Código para la opción 2
+                        Comprar comprarProductos = new Comprar();
+                        comprarProductos.elegirProducto();
                         break;
                     case 3:
                         System.out.println("Vuelve pronto");
