@@ -60,7 +60,7 @@ public class TiendaProductosApplication  implements CommandLineRunner {
 
 		switch (registroDeCompra){
 			case 1:productosTienda.verProductos();
-				break;
+
 			case 2:
 				System.out.println("Estos son los productos disponibles.");
 				productosTienda.verProductos();
@@ -76,7 +76,7 @@ public class TiendaProductosApplication  implements CommandLineRunner {
 				productosTienda.iterarProducto(productoCarrito);
 				System.out.println(cliente.carrito);
 
-				break;
+
 		}
 
 
