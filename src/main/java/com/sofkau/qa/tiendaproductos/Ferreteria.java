@@ -10,14 +10,23 @@ public class Ferreteria {
 
     public List<Producto> productoList;
     public List<Producto> productoStock;
+
     public Ferreteria() {
         this.productoList = new ArrayList<>();
     }
 
+    /**
+     * Metodo para agregar productos a la lista de productos
+     *
+     * @param producto
+     */
     public void agregarProductos(Producto producto) {
         productoList.add(producto);
     }
 
+    /**
+     * Metodo para agregar a la lista productos stock y mostrar los productos con stock
+     */
     public void productosDisponibles() {
         this.productoStock = new ArrayList<>();
 

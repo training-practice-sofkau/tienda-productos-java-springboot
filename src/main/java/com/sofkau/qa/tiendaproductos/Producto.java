@@ -1,16 +1,34 @@
 package com.sofkau.qa.tiendaproductos;
 
+/**
+ * Clase que representa un producto de la ferreteria
+ */
 public class Producto {
+    /**
+     * Atributos
+     */
     private String nombre;
     private int precio;
     private int stock;
 
+    /**
+     * Método Constructor
+     *
+     * @param nombre
+     * @param precio
+     * @param stock
+     */
     public Producto(String nombre, int precio, int stock) {
         this.nombre = nombre;
         this.precio = precio;
         this.stock = stock;
     }
 
+    /**
+     * Metodos getters y setters
+     *
+     * @return
+     */
     public String getNombre() {
         return nombre;
     }
