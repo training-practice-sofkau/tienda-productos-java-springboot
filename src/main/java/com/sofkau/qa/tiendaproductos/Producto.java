@@ -15,25 +15,18 @@ public class Producto {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+
 
     public int getCantidadProducto() {
         return cantidadProducto;
     }
 
-    public void setCantidadProducto(int cantidadProducto) {
-        this.cantidadProducto = cantidadProducto;
-    }
 
     public int getPrecio() {
         return precio;
     }
 
-    public void setPrecio(int precio) {
-        this.precio = precio;
-    }
+
 
     @Override
     public String toString() {

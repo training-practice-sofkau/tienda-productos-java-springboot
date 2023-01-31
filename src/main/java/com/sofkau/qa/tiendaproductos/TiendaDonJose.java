@@ -13,7 +13,6 @@ public class TiendaDonJose {
     List<Producto> productos;
     List<Cliente> registro;
 
-
     private int precioProducto;
 
     private int totalFactura;
@@ -61,9 +60,7 @@ public TiendaDonJose(String nombre) {
         return precioProducto;
     }
 
-    public void setPrecioProducto(int precioProducto) {
-        this.precioProducto = precioProducto;
-    }
+
 
     public void factura(Cliente cliente) {
         this.facturaCliente = " Nombre: "+ cliente.getNombre() +

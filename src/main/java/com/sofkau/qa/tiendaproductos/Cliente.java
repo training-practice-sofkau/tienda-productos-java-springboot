@@ -20,16 +20,10 @@ public class Cliente {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+
 
     public int getCc() {
         return Cc;
-    }
-
-    public void setCc(int cc) {
-        Cc = cc;
     }
 
 
