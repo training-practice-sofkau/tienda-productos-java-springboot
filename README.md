@@ -4,6 +4,12 @@ En esta rama encontrarás la solución al taller propuesto sobre el framework Sp
 ## Lineamientos
 - - -
 ![EjercicioPropuesto](https://user-images.githubusercontent.com/70449743/215650268-102088c6-59bb-4d52-94fa-f3c82d18e83a.jpeg)
+- - -
+Además, se busca extender la aplicación usando una API REST con Spring Boot así:
+- Usar POST para pasar una lista de compra
+- Usar GET para traer todos los productos en la tienda
+- Usar PUT para actualizar un producto existente
+- Usar DELETE para eliminar un producto existente
 ## Estructura
 - - -
 ## Resultados
