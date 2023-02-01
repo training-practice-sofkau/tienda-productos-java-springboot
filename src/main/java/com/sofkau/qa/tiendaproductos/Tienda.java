@@ -1,6 +1,8 @@
 package com.sofkau.qa.tiendaproductos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 @Service
 public class Tienda{
@@ -13,44 +15,21 @@ public class Tienda{
             return new Tienda();
         return tienda;
     }
-    public void ejecutar(){
-        do{
-        }while(mostrarMenu()!=3);
-    }
-    public int mostrarMenu(){
-        int op=0;
-        System.out.println("Bienvenido a TuCocina" +
-                "\nElige la opción a ejecutar:" +
-                "\n1. Comprar" +
-                "\n2. Registro de compras" +
-                "\n3. Salir");
-        while(true) {
-            try {
-                op = input.nextInt();
-                break;
-            } catch (Exception e) {
-                System.out.println("Ingrese un número para continuar");
-                input.nextLine();
+    public void comprar(ArrayList<String> claves,ArrayList<Integer> valores,Cliente cliente){
+        for(int i=0;i<BaseDeDatos.getBaseDeDatos().getProductos().size();i++){
+            for(int j=0;j<claves.size();j++){
+                if(BaseDeDatos.getBaseDeDatos().getProductos().get(i).getNombre().equalsIgnoreCase(claves.get(j))){
+                    if(BaseDeDatos.getBaseDeDatos().getProductos().get(i).getCantidad()<valores.get(j)){
+                        System.out.println("No hay suficientes productos");
+                    }else{
+                        BaseDeDatos.getBaseDeDatos().getProductos().get(i).setCantidad(
+                                BaseDeDatos.getBaseDeDatos().getProductos().get(i).getCantidad() - valores.get(j)
+                        );
+                        Factura.crearFactura(cliente,BaseDeDatos.getBaseDeDatos().getProductos().get(i));
+                    }
+                }
             }
         }
-        menu(op);
-        return op;
-    }
-    public void menu(int op){
-        switch(op){
-            case 1: comprar();
-                    break;
-            case 3: System.out.println("Gracias por preferirnos");
-                    break;
-            default:
-                System.out.println("Elige una opción válida");
-        }
-    }
-    public void comprar(){
-        mostrarProductos();
-        Catalogo.getCatalogo().mostrarProducto(productoAComprar());
-        cantidadAComprar();
-
     }
     public void cantidadAComprar(){
         int cantidad;

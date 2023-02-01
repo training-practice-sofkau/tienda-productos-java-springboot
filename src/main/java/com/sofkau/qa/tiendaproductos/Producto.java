@@ -27,6 +27,13 @@ public class Producto {
     public void setPrecio(long precio) {
         this.precio = precio;
     }
+    @Override
+    public String toString() {
+        return "Nombre: "+nombre+"\n"+
+                "Descripcion: "+descripcion+"\n"+
+                "Cantidad: "+cantidad+"\n"+
+                "Precio: "+precio;
+    }
 }
 class ProductoBuilder{
     private Producto producto;
