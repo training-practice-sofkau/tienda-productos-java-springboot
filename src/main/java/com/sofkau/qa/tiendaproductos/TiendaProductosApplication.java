@@ -1,12 +1,10 @@
 package com.sofkau.qa.tiendaproductos;
-import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+
+import java.util.*;
 import java.util.stream.Collectors;
 
 //creo mi aplicacion de Tienda utilizando SpringBoot
@@ -15,13 +13,15 @@ public class TiendaProductosApplication {
     //instancio la clase scanner para la entrada de texto por consola
     private  Scanner scanner = new Scanner(System.in);
     //estoy pasando una instancia con @Autowired
-    @Autowired
+
+
     private ProductoService ProductoService;
+    static List<Producto> productosVendidos;
 
     //estoy pasando una instancia con @Autowired
 
     @Autowired
-    private facturaService facturaService;
+    private FacturaService facturaService;
 
     //main que esta con SpringBoot por defecto
     public static void main(String[] args) {
@@ -29,8 +29,9 @@ public class TiendaProductosApplication {
     }
     //esta anotacion de @PostConstruct es utilizada en un metodo que debe ejecutarse despues de
     // realizar la inyeccion de dependencia
-    @PostConstruct
+
     public void start() {
+
         //creo mis funcionalidades
         System.out.println("Hola Usuario bienvenido a la tienda de Maquillaje Melisita \n");
         while (true) {
@@ -72,7 +73,11 @@ public class TiendaProductosApplication {
 
                 //agrego a mi nueva lista de productos vendidos , el id y la cantidad de la nueva compra
 
-                List<Producto> productosVendidos = ProductoService.productosVendidos(id, quantity);
+
+
+                ProductoService.productosVendidos(id, quantity);
+
+
 
                 //en caso de que no exista un producto con ese id
                 if (productosVendidos.isEmpty()) {
@@ -107,25 +112,37 @@ public class TiendaProductosApplication {
 
 
 //uso @service porque necesito que SpringBoot me instancie esta clase
-@Service
+
 class ProductoService {
     //creo mi lista de productos
-    private List<Producto> producticos;
+     public static ArrayList<Producto> producticos= new ArrayList<>(List.of(new Producto(1, "Polvo compacto Ruby Rose ", 20.500, 25),
+        new Producto(2, "Corrector de Ani-k", 13.000, 40),
+        new Producto(3, "Pestañina prosa", 37.500, 80),
+        new Producto(4, "Rubor two faced", 45.200, 16),
+        new Producto(5, "Delineador en gel ", 13.600, 42),
+        new Producto(6, "Paleta de Sombras Rosy Mc Michael ", 230.200, 10),
+        new Producto(7, "Tinta de labios Ruby Rose ", 5.000, 60),
+        new Producto(8, "Base DIOR", 99.900, 25),
+        new Producto(9, "Paleta de Sombras Anastacia", 150.200, 62),
+        new Producto(10, "Bronzer two faced", 75.000, 21)));
+
+
+        private static Map<Long, Producto> productos = new HashMap<>();
+
+        public static Producto actualizarProducto(Long id, Producto producto) {
+            if (productos.containsKey(id)) {
+                productos.put(id, producto);
+                return producto;
+            } else {
+                return null;
+            }
+        }
 
     //agrego productos a esta lista creada
 
     public ProductoService() {
-        producticos = new ArrayList<>();
-        producticos.add(new Producto(1, "Polvo compacto Ruby Rose ", 20.500, 25));
-        producticos.add(new Producto(2, "Corrector de Ani-k", 13.000, 40));
-        producticos.add(new Producto(3, "Pestañina prosa", 37.500, 80));
-        producticos.add(new Producto(4, "Rubor two faced", 45.200, 16));
-        producticos.add(new Producto(5, "Delineador en gel ", 13.600, 42));
-        producticos.add(new Producto(6, "Paleta de Sombras Rosy Mc Michael ", 230.200, 10));
-        producticos.add(new Producto(7, "Tinta de labios Ruby Rose ", 5.000, 60));
-        producticos.add(new Producto(8, "Base DIOR", 99.900, 25));
-        producticos.add(new Producto(9, "Paleta de Sombras Anastacia", 150.200, 62));
-        producticos.add(new Producto(10, "Bronzer two faced", 75.000, 21));
+
+
     }
 
     //creo un get para la lista de productos
@@ -153,7 +170,7 @@ class ProductoService {
 
     //creo mi nueva lista para los productos que he vendido ya en el menu de arriba
     //le paso coo parametro un id y una cantidad , que corresponde a la compra del cliente
-    public List<Producto> productosVendidos(int id, int quantity) {
+    public static List<Producto> productosVendidos(int id, int quantity) {
         //uso el tema de Stream para filtrar y validar un id para mi metodo corresondiente
         //ademas , uso findFirst para recuperar datos desde el inicio de un conjunto de registros ,
         // en mi caso de productos vendidos
@@ -180,18 +197,19 @@ class ProductoService {
 }
 //uso @service porque necesito que SpringBoot me instancie esta clase, debo inyectarla
 @Service
-class facturaService {
+class FacturaService {
     //creo mi lista de facturas
-    private List<Factura> facturitas;
+    static ArrayList<Factura> facturitas = new ArrayList<>();
+
 
     //creo mi constructor
 
-    public facturaService() {
-        facturitas = new ArrayList<>();
+    public FacturaService() {
+
     }
     //creo mi metodo para generar las facturas para los clientes
     //le paso 2 parametros: mi lista de producticos disponibles y el nombre del cliente
-    public Factura generateFactura(List<Producto> producticos, String name) {
+    public static Factura generateFactura(List<Producto> producticos, String name) {
         //hago uso de Stream para filtrar
         // para efectuar la suma correspondiente
         double total = producticos.stream().mapToDouble(p -> p.getPrice()).sum();
