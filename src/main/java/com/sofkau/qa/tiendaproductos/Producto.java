@@ -30,7 +30,7 @@ public class Producto {
     }
 
     public int getPrecio() {
-        return precio;
+        return this.precio;
     }
 
     public void setPrecio(int precio) {
@@ -38,7 +38,7 @@ public class Producto {
     }
 
     public int getUnidades() {
-        return unidades;
+        return this.unidades;
     }
 
     public void setUnidades(int unidades) {
@@ -48,9 +48,9 @@ public class Producto {
     @Override
     public String toString() {
         return "Producto{" +
-                "nombre='" + nombre + '\'' +
-                ", precio=" + precio +
-                ", unidades=" + unidades +
+                "nombre='" + this.nombre + '\'' +
+                ", precio=" + this.precio +
+                ", unidades=" + this.unidades +
                 '}';
     }
 }
