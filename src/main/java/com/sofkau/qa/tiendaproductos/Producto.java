@@ -1,5 +1,7 @@
 package com.sofkau.qa.tiendaproductos;
 
+import java.util.Objects;
+
 public class Producto {
     private int id;
     private String nombre;
@@ -41,5 +43,26 @@ public class Producto {
                 ", precio=" + precio +
                 ", cantidad=" + cantidad +
                 '}';
+    }
+
+    /*@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Producto producto = (Producto) o;
+        return Objects.equals(id, producto.id) && Objects.equals(nombre, producto.nombre) && Objects.equals(precio, producto.precio) && Objects.equals(cantidad, producto.cantidad);
+    }*/
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Producto producto = (Producto) o;
+        return id == producto.id && Double.compare(producto.precio, precio) == 0 && cantidad == producto.cantidad && nombre.equals(producto.nombre);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nombre, precio, cantidad);
     }
 }

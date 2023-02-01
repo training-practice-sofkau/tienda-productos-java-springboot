@@ -7,13 +7,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/tienda")
 public class StockTiendaController {
 
-    List<Producto> nuevoProducto = new ArrayList<>();
+    List<Producto> productoRequest = new ArrayList<>();
     @Autowired
     private StockTienda stockTienda;
 
@@ -29,7 +31,14 @@ public class StockTiendaController {
                 producto.getNombre(),
                 producto.getPrecio(),
                 producto.getCantidad());
-        this.nuevoProducto.add(newProducto);
+        this.productoRequest.add(newProducto);
         return new ResponseEntity(newProducto, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{productId}")
+    public ResponseEntity deleteProduct(@PathVariable("productId") Integer id){
+        List<Producto> newProducts = productoRequest.stream().filter(n -> !Objects.equals(n.getId(), id)).collect(Collectors.toList());
+        this.productoRequest = newProducts;
+        return new ResponseEntity(productoRequest, HttpStatus.GONE);
     }
 }
