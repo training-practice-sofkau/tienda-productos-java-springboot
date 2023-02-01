@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import java.util.Objects;
 
 
-
 public class Producto {
 
     private String id;
@@ -80,6 +79,12 @@ public class Producto {
         return Objects.hash(id, nombre, precio, cantidad);
     }
 
+    /**
+
+     public double calcularPrecio(double precio, int cantidad) {
+     return precio * cantidad;
+     }
+     */
 
 
 }

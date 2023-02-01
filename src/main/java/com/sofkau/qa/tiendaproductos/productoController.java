@@ -93,5 +93,19 @@ public class productoController {
         return new ResponseEntity(productos, HttpStatus.GONE);
     }
 
+    /**
+     * Metodo para calcular el precio de un producto
+     *
+     * @param cantidad
+     * @param precio
+     * @return
+     */
+    @PostMapping("/calcular")
+    public ResponseEntity<Double> calcularP(@RequestParam double precio, @RequestParam int cantidad) {
+        double total = cantidad * precio;
+        System.out.println(total);
+        return new ResponseEntity<>(total, HttpStatus.OK);
+    }
+
 
 }
