@@ -30,8 +30,6 @@ public class Comprar {
         StockTienda mostrarProductos = new StockTienda();
         List<Producto> products = mostrarProductos.getProductos();
         mostrarProductos.mostrar(products);
-       /* StockTienda stockTienda = new StockTienda();
-        List<Producto> products = stockTienda.getProductos();*/
 
 
         System.out.println("Ingresa el numero de los productos que deseas seleccionar (Ingresa 0 para terminar): ");
