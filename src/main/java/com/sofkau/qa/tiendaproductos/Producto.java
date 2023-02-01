@@ -1,24 +1,24 @@
 package com.sofkau.qa.tiendaproductos;
 
 public class Producto {
+
+    private String id;
     private String nombre;
     private int precio;
-    private int unidades;
-
-    public Producto(String nombre) {
-        this.nombre = nombre;
-    }
 
 
-    public Producto(String nombre, int precio) {
+    public Producto(String id,String nombre, int precio) {
+        this.id = id;
         this.nombre = nombre;
         this.precio = precio;
     }
 
-    public Producto(String nombre, int precio, int unidades) {
-        this.nombre = nombre;
-        this.precio = precio;
-        this.unidades = unidades;
+    public String getId(){
+        return this.id;
+    }
+
+    public void setId(String id){
+        this.id = id;
     }
 
     public String getNombre() {
@@ -37,20 +37,12 @@ public class Producto {
         this.precio = precio;
     }
 
-    public int getUnidades() {
-        return this.unidades;
-    }
-
-    public void setUnidades(int unidades) {
-        this.unidades = unidades;
-    }
-
     @Override
     public String toString() {
         return "Producto{" +
-                "nombre='" + this.nombre + '\'' +
-                ", precio=" + this.precio +
-                ", unidades=" + this.unidades +
+                "id='" + id + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", precio=" + precio +
                 '}';
     }
 }

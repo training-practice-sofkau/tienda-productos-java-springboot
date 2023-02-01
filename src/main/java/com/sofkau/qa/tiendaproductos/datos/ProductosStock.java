@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ProductosStock {
@@ -14,16 +15,16 @@ public class ProductosStock {
      */
     @Autowired
     public StockMethods stockMethods;
-    Producto guantes = new Producto("Guantes", 20000);
-    Producto pantaloneta = new Producto("Pantaloneta", 10000);
-    Producto guayos = new Producto("Guayos", 50000);
-    Producto medias = new Producto("Medias", 5000);
-    Producto espinillera = new Producto("Espinillera", 6000);
-    Producto camiseta = new Producto("Camiseta", 15000);
-    Producto camisilla = new Producto("camisilla", 5000);
-    Producto balon = new Producto("Balón", 30000);
-    Producto gorra = new Producto("Gorra", 8000);
-    Producto vendaje = new Producto("Vendaje", 3000);
+    Producto guantes = new Producto(UUID.randomUUID().toString(),"Guantes", 20000);
+    Producto pantaloneta = new Producto(UUID.randomUUID().toString(),"Pantaloneta", 10000);
+    Producto guayos = new Producto(UUID.randomUUID().toString(),"Guayos", 50000);
+    Producto medias = new Producto(UUID.randomUUID().toString(),"Medias", 5000);
+    Producto espinillera = new Producto(UUID.randomUUID().toString(),"Espinillera", 6000);
+    Producto camiseta = new Producto(UUID.randomUUID().toString(),"Camiseta", 15000);
+    Producto camisilla = new Producto(UUID.randomUUID().toString(),"camisilla", 5000);
+    Producto balon = new Producto(UUID.randomUUID().toString(),"Balón", 30000);
+    Producto gorra = new Producto(UUID.randomUUID().toString(),"Gorra", 8000);
+    Producto vendaje = new Producto(UUID.randomUUID().toString(),"Vendaje", 3000);
 
     public List<Producto> getStock(){
         // Se agregan productos a la lista de Stock
