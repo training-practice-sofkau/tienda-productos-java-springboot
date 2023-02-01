@@ -64,4 +64,45 @@ public class Controller {
         this.cafeteria.mostrarProductos();
         return new ResponseEntity(producto, HttpStatus.ACCEPTED);
     }
+
+    @DeleteMapping("/producto/eliminar/{ID}")
+    public ResponseEntity eliminarProducto(@PathVariable("ID") int ID){
+        List<Producto> productos = cafeteria.getProductoList().stream()
+                .filter(producto -> producto.getID() != ID).collect(Collectors.toList());
+        this.cafeteria.setProductoList(productos);
+        this.cafeteria.mostrarProductos();
+        return new ResponseEntity(productos, HttpStatus.GONE);
+    }
+
+    @PostMapping("/compra/registrar")
+    public ResponseEntity registrarCompra(@RequestBody Compra compra) {
+        Factura factura = new Factura(compra.getNombreCliente());
+        for (CompraDetalle compraDetalle : compra.getDetalles()) {
+            Producto producto = this.buscarProducto(compraDetalle.getIdProducto());
+            if (producto != null) {
+                factura.agregarDetalle(producto, compraDetalle.getCantidad());
+            }
+        }
+        if (factura.getDetallesFactura().size() > 0){
+            cafeteria.setFacturaEnCurso(factura);
+            cafeteria.generarFactura();
+        }
+        return new ResponseEntity(factura, HttpStatus.CREATED);
+    }
+
+    private Producto buscarProducto(int ID) {
+        Producto productoEncontrado = null;
+        for (Producto producto : cafeteria.getProductoList()) {
+            if (producto.getID() == ID) {
+                productoEncontrado = producto;
+            }
+        }
+        return productoEncontrado;
+    }
+
+    @GetMapping("/factura/listar")
+    public ResponseEntity listarFactura (){
+        List<Factura> facturas = this.cafeteria.getFacturas();
+        return new ResponseEntity(facturas, HttpStatus.FOUND);
+    }
 }

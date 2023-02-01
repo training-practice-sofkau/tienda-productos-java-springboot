@@ -142,5 +142,11 @@ public class Cafeteria {
         this.productoList = productoList;
     }
 
+    public void setFacturaEnCurso(Factura facturaEnCurso) {
+        this.facturaEnCurso = facturaEnCurso;
+    }
 
+    public ArrayList<Factura> getFacturas() {
+        return facturas;
+    }
 }

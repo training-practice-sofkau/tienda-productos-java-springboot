@@ -2,6 +2,7 @@ package com.sofkau.qa.tiendaproductos;
 import java.util.List;
 
 public class Compra {
+
     private String nombreCliente;
     private List<CompraDetalle> detalles;
 
