@@ -27,40 +27,4 @@ public class TiendaProductosApplication {
 
 	}
 
-	@Bean
-	public CommandLineRunner commandLineRunner(){
-		return args -> {
-
-			System.out.println("Bienvenido a la tienda de Productos deportivosw\n" +
-					"Por favor ingrese su nombre");
-
-			Scanner line = new Scanner(System.in); // Se crea un objeto Scanner
-			String nombre = line.nextLine(); // Se lee el nombre ingresado por usuario
-
-			System.out.println("Por favor elija la opción\n" +
-					"1. Comprar en la tienda\n" +
-					"2. Listar productos comprados");
-			int opcion = Integer.parseInt(line.nextLine()); // se lee la opción ingresada por el usuario
-
-			switch (opcion) {
-				case 1:
-					System.out.println("A continuación encuentras la lista de productos disponibles en la tienda");
-					productosStock.getStock();
-
-					System.out.println("Por favor escriba el nombre de los productos que desea adquirir, seguido por\n" +
-							"el numero de unidades; separados por coma y sin espacios");
-
-					String[] listaProductosCliente = line.nextLine().split(",");
-
-					String nombreProducto = listaProductosCliente[0];
-					// TODO: crear instancias, tomando como parametros de entrada el texto ingresado por el usuario
-
-					break;
-
-					// TODO: crear el menu para la opción 2 de listar los productos comprados en la sesión actual
-			}
-
-		};
-	}
-
 }

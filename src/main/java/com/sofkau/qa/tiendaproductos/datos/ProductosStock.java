@@ -4,6 +4,8 @@ import com.sofkau.qa.tiendaproductos.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProductosStock {
     /**
@@ -23,7 +25,7 @@ public class ProductosStock {
     Producto gorra = new Producto("Gorra", 8000);
     Producto vendaje = new Producto("Vendaje", 3000);
 
-    public void getStock(){
+    public List<Producto> getStock(){
         // Se agregan productos a la lista de Stock
         stockMethods.agregar(vendaje);
         stockMethods.agregar(gorra);
@@ -36,8 +38,7 @@ public class ProductosStock {
         stockMethods.agregar(pantaloneta);
         stockMethods.agregar(guantes);
 
-        // Se imprime la lista de productos en Stock
-        stockMethods.listar();
+        // Se retorna la lista de productos en Stock
+        return stockMethods.getListaStock();
     }
-
 }
