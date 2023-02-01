@@ -1,15 +1,14 @@
-package com.sofkau.qa.tiendaproductos;
+package com.sofkau.qa.tiendaproductos.repository.models;
 
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
-@Component
 public class Producto {
     private String nombre;
     private int cantidadProducto;
     private int precio;
 
-    String id;
+    private String id;
 
     public Producto(String id, String nombre, int cantidadProducto, int precio) {
         this.nombre = nombre;
@@ -19,7 +18,8 @@ public class Producto {
 
     }
 
-    public Producto() {
+    public void disminuirStock(){
+        this.cantidadProducto --;
     }
 
     public String getNombre() {
@@ -37,7 +37,9 @@ public class Producto {
         return precio;
     }
 
-
+    public String getId() {
+        return id;
+    }
 
     @Override
     public String toString() {
