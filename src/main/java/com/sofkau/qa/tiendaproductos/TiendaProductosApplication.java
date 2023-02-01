@@ -1,155 +1,199 @@
 package com.sofkau.qa.tiendaproductos;
-
-import java.util.ArrayList;
-import java.util.Scanner;
-
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Service;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
 
-
-
+//creo mi aplicacion SpringBoot
 @SpringBootApplication
 public class TiendaProductosApplication {
+	//instancio la clase scanner para la entrada de texto por consola
+	private  Scanner scanner = new Scanner(System.in);
+	//estoy pasando una instancia con @Autowired
+	@Autowired
+	private ProductoService ProductoService;
+
+
 
 	@Autowired
-	private Product product;
+	private facturaService facturaService;
 
-	@Autowired
-	private Compra compra;
-
+	//main que esta con SpringBoot por defecto
 	public static void main(String[] args) {
 		SpringApplication.run(TiendaProductosApplication.class, args);
-
-
 	}
 
-	@Service
-	class Product {
-		private String nombre;
-		boolean disponible;
+	@PostConstruct
+	public void start() {
+		//creo funcionalidades
+		System.out.println("Hola Usuario bienvenido a la tienda de Maquillaje Melisita \n");
+		while (true) {
+			System.out.println("Por favor selecciona una opcion \n");
+			System.out.println("1. Ver lista de productos disponibles");
+			System.out.println("2. Comprar un producto");
+			System.out.println("3. Ver Registro de facturas ");
+			System.out.println("4. Salir del menu ");
+			System.out.print("Ingresa tu opcion: \n");
 
-		public Product(String nombre, boolean disponible) {
-			this.nombre = nombre;
-			this.disponible = disponible;
-		}
+			//uso la clase Scanner para ingreso de texto por la consola
 
-		public String getNombre() {
-			return nombre;
-		}
+			int eleccion = scanner.nextInt();
 
-		public boolean isDisponible() {
-			return disponible;
-		}
-	}
-@Service
-	class Compra {
-		private String nombreCliente;
-		private String nombreProducto;
+			//creo condicionales acorde a mis necesidades del Menu:
+			//1 para mostrar la lista de productos disponibles
 
-		public Compra(String nombreCliente, String nombreProducto) {
-			this.nombreCliente = nombreCliente;
-			this.nombreProducto = nombreProducto;
-		}
+			if (eleccion == 1) {
+				List<Producto> ProductosDisponibles = ProductoService.getProductosDisponibles();
 
-		public String getNombreCliente() {
-			return nombreCliente;
-		}
-
-		public String getNombreProducto() {
-			return nombreProducto;
-		}
-	}
-@Service
-	class Tienda {
-		private ArrayList<Product> products = new ArrayList<>();
-		private ArrayList<Compra> compras = new ArrayList<>();
-		private Scanner scanner = new Scanner(System.in);
-
-		public Tienda() {
-			products.add(new Product("Zapatos", true));
-			products.add(new Product("Camisetas", true));
-			products.add(new Product("Pantalones", true));
-			products.add(new Product("Camisa", true));
-			products.add(new Product("Jogger", true));
-			products.add(new Product("Pantalonetas", true));
-			products.add(new Product("Boxers", true));
-			products.add(new Product("Medias", true));
-			products.add(new Product("Chaquetas", true));
-			products.add(new Product("Busos", true));
-		}
-		public void mostrarMenu() {
-			System.out.println("Bienvenido a la tienda");
-			System.out.println("1. Ver productos disponibles");
-			System.out.println("2. Realizar compra");
-			System.out.println("3. Ver registro de compras");
-			System.out.println("4. Salir");
-			System.out.print("Ingrese una opción: ");
-			int opcion = scanner.nextInt();
-			switch (opcion) {
-				case 1:
-					verProductos();
-					break;
-				case 2:
-					realizarCompra();
-					break;
-				case 3:
-					verRegistroCompras();
-					break;
-				case 4:
-					System.exit(0);
-					break;
-				default:
-					System.out.println("Opción inválida");
-					break;
-			}
-		}
-
-		public void verProductos() {
-			System.out.println("Productos disponibles: ");
-			for (Product product : products) {
-				if (product.isDisponible()) {
-					System.out.println("- " + product.getNombre());
+				System.out.println("Estos son nuestros productos disponibles:");
+				//recorro lista con un for
+				for (Producto product : ProductosDisponibles) {
+					System.out.println(product);
 				}
-			}
-			System.out.println();
-		}
 
-		public void realizarCompra() {
-			System.out.print("Ingrese el nombre del producto que desea comprar: ");
-			String nombreProducto = scanner.next();
-			Product productEncontrado = null;
-			for (Product product : products) {
-				if (product.getNombre().equals(nombreProducto) && product.isDisponible()) {
-					productEncontrado = product;
-					break;
+			} else if (eleccion == 2) {
+
+				System.out.println("Ingresa el id del producto que quieres comprar (del 1 al 10): \n");
+				int id = scanner.nextInt();
+
+				System.out.println("Ingresa la cantidad que vas a adquirir de ese producto: \n");
+				int quantity = scanner.nextInt();
+
+
+				scanner.nextLine();
+				System.out.println("Ingresa tu nombre para generar la factura : \n");
+				String customerName = scanner.nextLine();
+
+
+
+				List<Producto> productosVendidos = ProductoService.productosVendidos(id, quantity);
+
+
+				if (productosVendidos.isEmpty()) {
+					System.out.println("No es posible comprar el producto con id: " + id);
+
+
+				} else {
+					Factura factura = facturaService.generateFactura(productosVendidos, customerName);
+					System.out.println("Factura Generada exitosamente: \n" + factura);
 				}
+
+
+			} else if (eleccion == 3) {
+				//lista para almacenar las facturas de todos los clientes
+				List<Factura> facturas = facturaService.getFacturas();
+				System.out.println("Registro de facturas: ");
+				//recorro esta lista con un for
+				for (Factura Factura : facturas) {
+					System.out.println(Factura);//imprimo las facturas
+				}
+			} else if(eleccion==4) {
+				System.exit(0);
+				System.out.println("Muchas gracias, vuelva pronto");
+				break;
 			}
-			if (productEncontrado == null) {
-				System.out.println("Producto no disponible o no encontrado");
-				return;
-			}
-			System.out.print("Ingrese su nombre: ");
-			String nombreCliente = scanner.next();
-			compras.add(new Compra(nombreCliente, nombreProducto));
-			productEncontrado.disponible = false;
-			System.out.println("Compra realizada con éxito");
+
 		}
 
-		public void verRegistroCompras() {
-			System.out.println("Registro de compras: ");
-			for (Compra compra : compras) {
-				System.out.println(compra.getNombreCliente() + " compró " + compra.getNombreProducto());
-			}
-			System.out.println();
-		}
+	}
+}
 
-		public void main(String[] args) {
-			Tienda tienda = new Tienda();
-			while (true) {
-				tienda.mostrarMenu();
-			}
+
+//uso @service porque necesito que SpringBoot me instancie esta clase
+@Service
+class ProductoService {
+	//creo mi lista de productos
+	private List<Producto> producticos;
+
+	//agrego productos a esta lista creada
+
+	public ProductoService() {
+		producticos = new ArrayList<>();
+		producticos.add(new Producto(1, "Zapatos", 160.000, 5));
+		producticos.add(new Producto(2, "Camisetas", 28.000, 20));
+		producticos.add(new Producto(3, "Pantalones", 90.000, 12));
+		producticos.add(new Producto(4, "Camisa", 50.000, 15));
+		producticos.add(new Producto(5, "Jogger ", 33.600, 42));
+		producticos.add(new Producto(6, "Pantalonetas ", 30.000, 10));
+		producticos.add(new Producto(7, "Boxers ", 10.000, 22));
+		producticos.add(new Producto(8, "Medias", 8.000, 100));
+		producticos.add(new Producto(9, "Chaquetas", 150.000, 22));
+		producticos.add(new Producto(10, "Busos", 75.000, 40));
+	}
+
+	//creo un get para la lista de productos
+	// con el objetivo de mostrar , de obtener despues esta lista
+	public List<Producto> getProductosDisponibles() {
+
+		return producticos.stream().filter(p -> p.getQuantity() > 0).collect(Collectors.toList());
+	}
+
+	//creo metodo imprimir productos disponibes
+	public void imprimirProductosDispo() {
+		System.out.println("Productos disponibles:");
+
+
+		for (Producto producto : getProductosDisponibles()) {
+			System.out.println(producto.toString());//imprimo mi lista
 		}
+	}
+
+
+
+	//creo lista para los productos que he vendido ya en el menu de arriba
+	public List<Producto> productosVendidos(int id, int quantity) {
+
+
+		Producto product = producticos.stream().filter(p -> p.getId() == id).findFirst().orElse(null);
+
+
+
+		if (product == null || product.getQuantity() < quantity) {
+			return new ArrayList<>();
+		}
+		//uso el metodo set de prductoService para validar el stock que hay disponible en tienda
+		product.setQuantity(product.getQuantity() - quantity);
+
+		//creo lista de productos vendidos
+		List<Producto> productosVendidos = new ArrayList<>();
+		//recorro la lista para agregar los productos vendidos
+		for (int i = 0; i < quantity; i++) {
+			productosVendidos.add(product);
+		}
+		return productosVendidos;
+	}
+}
+
+
+//uso @service
+@Service
+class facturaService {
+	//creo lista de facturas
+	private List<Factura> facturas;
+
+	//creo constructor
+
+	public facturaService() {
+		facturas = new ArrayList<>();
+	}
+
+	public Factura generateFactura(List<Producto> producticos, String name) {
+
+		double total = producticos.stream().mapToDouble(p -> p.getPrice()).sum();
+
+
+		Factura factura = new Factura(name, total, producticos);
+		//agrego a mi lista de facturas generadas
+		facturas.add(factura);
+		return factura;
+	}
+	//creo el metodo get
+	public List<Factura> getFacturas() {
+		return facturas;
 	}
 }
