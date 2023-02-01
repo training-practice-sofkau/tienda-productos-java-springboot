@@ -10,9 +10,13 @@ import java.util.*;
 
 @SpringBootApplication
 public class TiendaProductosApplication implements CommandLineRunner {
-
+	public static ArrayList<ProductoInventario> inventario=new ArrayList<>();
+	public static LinkedList<Factura> historicoFacturas=new LinkedList<>();
+	public static ArrayList<ProductoCompra> carritoPostman=new ArrayList<>();
+	public static HashMap<Integer, Cliente> listaClientes=new HashMap<>();
 	public static void main(String[] args) {
 		SpringApplication.run(TiendaProductosApplication.class, args);
+
 	}
 
 	@Bean
@@ -25,6 +29,7 @@ public class TiendaProductosApplication implements CommandLineRunner {
 			int c=0;
 			int clientei;
 			int verificar;
+			int compra=0;
 			double totalPagar=0;
 			String nombreProducto;
 			String nombreCliente;
@@ -33,8 +38,8 @@ public class TiendaProductosApplication implements CommandLineRunner {
 			int idProducto;
 			int productoi;
 			Scanner entrada = new Scanner(System.in);
-			HashMap<Integer, Cliente> listaClientes=new HashMap<>();
-			ArrayList<ProductoInventario> inventario=new ArrayList<>();
+
+
 
 			Cliente c1=new Cliente("Fabio",1);
 			Cliente c2=new Cliente("Carlos",2);
@@ -49,6 +54,13 @@ public class TiendaProductosApplication implements CommandLineRunner {
 			ProductoInventario p3=new ProductoInventario("Gaseosa",3,10,400);
 			ProductoInventario p4=new ProductoInventario("Papitas",4,30,500);
 
+			LinkedList<ProductoCompra> prueba=new LinkedList<>();
+			ProductoCompra f1=new ProductoCompra("Arroz",1,10,200);
+			ProductoCompra f2=new ProductoCompra("Lentejas",2,15,300);
+			prueba.add(f1);
+			prueba.add(f2);
+			Factura pruebaF=new Factura(1,LocalDate.now(),prueba);
+			historicoFacturas.add(pruebaF);
 			inventario.add(p1);
 			inventario.add(p2);
 			inventario.add(p3);
@@ -107,12 +119,44 @@ public class TiendaProductosApplication implements CommandLineRunner {
 
 								break;
 							case 2:
-								LinkedList<ProductoCompra> carritoAux=(LinkedList<ProductoCompra>) listaClientes.get(clientei).getProductos().clone();
-								Factura facturaAux=new Factura(idf, LocalDate.now(),carritoAux);
-								System.out.println("Factura generada");
-								facturaAux.generarFactura();
-								listaClientes.get(clientei).aniadirFactura(facturaAux);
-								listaClientes.get(clientei).clearCarrito();
+								if(listaClientes.get(clientei).verificarCarrito()){
+									System.out.println("compro postman");
+									if(!carritoPostman.isEmpty()){
+										System.out.println("Confirmo compra postman");
+										for(ProductoCompra productoCompra:carritoPostman){
+											System.out.println(productoCompra.toString());
+										}
+										for(ProductoCompra carrito:carritoPostman){
+											for(ProductoInventario inven:inventario){
+												if(carrito.getId()==inven.getId()){
+													inven.setCantidad(inven.getCantidad()-carrito.getCantidad());
+													ProductoCompra productoCompraAux1 = new ProductoCompra(carrito.getNombre(), carrito.getId(), carrito.getCantidad(), carrito.getPrecio());
+													listaClientes.get(clientei).aniadirProductoCompra(productoCompraAux1);
+												}
+											}
+										}
+										carritoPostman.clear();
+										LinkedList<ProductoCompra> carritoAux=(LinkedList<ProductoCompra>) listaClientes.get(clientei).getProductos().clone();
+										Factura facturaAux=new Factura(idf, LocalDate.now(),carritoAux);
+										System.out.println("Factura generada");
+										facturaAux.generarFactura();
+										historicoFacturas.add(facturaAux);
+										listaClientes.get(clientei).aniadirFactura(facturaAux);
+										listaClientes.get(clientei).clearCarrito();
+									}else{
+										System.out.println("no se puede realizar compra, el carrito esta vacio");
+									}
+								}else{
+									LinkedList<ProductoCompra> carritoAux=(LinkedList<ProductoCompra>) listaClientes.get(clientei).getProductos().clone();
+									Factura facturaAux=new Factura(idf, LocalDate.now(),carritoAux);
+									System.out.println("Factura generada");
+									facturaAux.generarFactura();
+									historicoFacturas.add(facturaAux);
+									listaClientes.get(clientei).aniadirFactura(facturaAux);
+									listaClientes.get(clientei).clearCarrito();
+								}
+
+
 								break;
 							case 3:
 								if(!listaClientes.get(clientei).verificarFacturas()){
@@ -157,10 +201,14 @@ public class TiendaProductosApplication implements CommandLineRunner {
 						break;
 				}
 			} while (opcion <= 3);
+
+
 		};
 	}
+
+
 	@Override
 	public void run(String... args) throws Exception {
-		commandLineRunner();
+
 	}
 }

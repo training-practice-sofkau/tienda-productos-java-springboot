@@ -1,5 +1,7 @@
 package com.sofkau.qa.tiendaproductos;
 
+import org.springframework.stereotype.Component;
+
 import java.time.LocalDate;
 import java.util.LinkedList;
 
@@ -20,5 +22,9 @@ public class Factura {
         for(ProductoCompra productoCompra:productoCompras){
             System.out.println(productoCompra.toString());
         }
+    }
+
+    public void eliminarUltimo(){
+        productoCompras.remove(productoCompras.size()-1);
     }
 }

@@ -93,7 +93,14 @@ public class Cliente {
         return productos;
     }
 
+    public void setProductos(LinkedList<ProductoCompra> productos) {
+        this.productos = productos;
+    }
+
     public void clearCarrito(){
         productos.clear();
     }
+
+
+
 }
