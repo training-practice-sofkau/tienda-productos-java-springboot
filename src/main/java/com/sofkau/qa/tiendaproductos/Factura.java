@@ -6,7 +6,8 @@ import java.util.List;
 public class Factura {
     private String nombreCliente;
     public List<Producto> productosComprados;
-    private int cantidad;
+
+    //private int cantidad;
 
     /**
      * Metodo constructor
@@ -22,7 +23,6 @@ public class Factura {
      * Metodo para mostrar los productos facturados
      */
     public void mostrarFactura() {
-        System.out.println("Compras realizadas: ");
         productosComprados.forEach(producto -> {
             System.out.println(producto.getNombre() + "." + " precio $" + producto.getPrecio());
         });
@@ -43,7 +43,7 @@ public class Factura {
         producto.setStock(producto.getStock() - cantidad);
         for (int i = 0; i < cantidad; i++) {
             productosComprados.add(producto);
-            this.cantidad = cantidad;
+            //this.cantidad = cantidad;
         }
     }
 
@@ -59,12 +59,5 @@ public class Factura {
     public List<Producto> getProductosComprados() {
         return productosComprados;
     }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
 }
+
