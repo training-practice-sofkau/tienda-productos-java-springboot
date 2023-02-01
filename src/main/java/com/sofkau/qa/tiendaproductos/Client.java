@@ -1,5 +1,7 @@
 package com.sofkau.qa.tiendaproductos;
 
+
+
 public class Client {
 
     private String Id;
