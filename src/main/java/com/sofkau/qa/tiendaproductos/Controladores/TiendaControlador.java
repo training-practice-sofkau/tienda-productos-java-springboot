@@ -1,8 +1,6 @@
 package com.sofkau.qa.tiendaproductos.Controladores;
 
-import com.sofkau.qa.tiendaproductos.Modelos.Note;
-import com.sofkau.qa.tiendaproductos.Modelos.Producto;
-import com.sofkau.qa.tiendaproductos.Modelos.Stock;
+import com.sofkau.qa.tiendaproductos.Modelos.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +15,9 @@ import java.util.stream.Collectors;
 public class TiendaControlador {
 
     Stock miStock = new Stock();
+    List<Factura>  listaFacturas= new ArrayList<>();
 
     @GetMapping("/bring/all")
-
     public Stock misproductos (){
         agregarProductos();
        return miStock;
@@ -38,12 +36,41 @@ public class TiendaControlador {
     }
 
 
+    @PutMapping ("/modificar")
+    public Stock modificarPrecio(@RequestBody ProdCantidad prodCantidad){
+
+        List<ProdCantidad> productos;
+        productos= miStock.getMisProductos();
+        for (ProdCantidad listaprod:productos) {
+            if (listaprod.getId().equals(prodCantidad.getId())){
+                listaprod.setPrecio(prodCantidad.getPrecio());
+            }
+        }
+        return miStock;
+    }
 
 
+    @PostMapping("/factura")
+    public ResponseEntity generarFactura(@RequestBody Cliente miCliente){
+        Factura newFactura = new Factura(new Cliente(UUID.randomUUID().toString() ,miCliente.getNombre()));
+        newFactura.setNit(UUID.randomUUID().toString());
+        this.listaFacturas.add(newFactura);
 
-
-
-
-
+        return new ResponseEntity(newFactura, HttpStatus.CREATED);
+    }
+    @PostMapping("/factura/{nit}")
+    public Factura agregarProductosFactura(@PathVariable("nit") String nit, @RequestBody ProdCantidad prodCantidad ){
+        ProdCantidad newProducto = new ProdCantidad(prodCantidad.getId(),prodCantidad.getNombre(),prodCantidad.getPrecio(),
+                prodCantidad.getCantidad());
+        Factura facturatemporal= new Factura();
+        facturatemporal.setNit(nit);
+        for (Factura mifactura:listaFacturas) {
+            if (facturatemporal.getNumeroFactura().equals(mifactura.getNumeroFactura())){
+                facturatemporal=mifactura;
+                mifactura.agregarProductosFactura(newProducto);
+            }
+        }
+        return facturatemporal;
+    }
 
 }

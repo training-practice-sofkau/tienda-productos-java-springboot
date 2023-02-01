@@ -1,7 +1,6 @@
 package com.sofkau.qa.tiendaproductos.Modelos;
 
 public class Cliente {
-
     private String cedula;
     private  String nombre;
 
@@ -25,6 +24,7 @@ public class Cliente {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
 
     @Override
     public String toString() {

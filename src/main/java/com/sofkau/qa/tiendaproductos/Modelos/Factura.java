@@ -4,21 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Factura {
-    private int nit;
-    private static int nitSiguiente = 1;
+    private String nit;
+    //private static int nitSiguiente = 1;
     private Cliente cliente;
     private List<ProdCantidad> prodComprados;
     private double total;
+    public Factura(){
+
+    }
 
     public Factura(Cliente cliente){
-        nit = nitSiguiente;
-        nitSiguiente ++;
+
         this.cliente=cliente;
         prodComprados = new ArrayList<>();
         this.total = 0;
     }
 
-    public int getNumeroFactura() {
+    public String getNumeroFactura() {
         return nit;
     }
 
@@ -34,12 +36,20 @@ public class Factura {
        }
     }
 
+    public List<ProdCantidad> getProdComprados() {
+        return prodComprados;
+    }
+
     public Cliente getCliente() {
         return cliente;
     }
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public void setNit(String nit){
+        this.nit=nit;
     }
 
     @Override
