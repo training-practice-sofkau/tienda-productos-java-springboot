@@ -9,4 +9,5 @@ public interface StockMethods {
     public void eliminar(Producto producto);
     public void listar();
     public List<Producto> getListaStock();
+
 }

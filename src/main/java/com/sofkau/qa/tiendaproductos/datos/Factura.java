@@ -15,4 +15,15 @@ public class Factura {
     public List<Producto> getProductosComprados(){
         return tienda.getLista();
     }
+
+    public int setPrecioProducto(){
+        for (Producto productoComprado : this.getProductosComprados()){
+            for (Producto productoStock : productosStock.getStock()){
+                if (productoComprado.getNombre().equalsIgnoreCase(productoStock.getNombre())){
+                    return productoStock.getPrecio();
+                }
+            }
+        }
+        return 3;
+    }
 }

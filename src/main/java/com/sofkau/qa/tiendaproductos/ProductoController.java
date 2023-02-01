@@ -35,7 +35,7 @@ public class ProductoController {
         Producto producto1 = new Producto(
                 UUID.randomUUID().toString(),
                 producto.getNombre(),
-                producto.getPrecio());
+                productosComprados.setPrecioProducto());
         tienda.agregar(producto1);
         return new ResponseEntity(producto1, HttpStatus.CREATED);
     }

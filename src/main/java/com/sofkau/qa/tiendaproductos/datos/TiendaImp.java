@@ -1,6 +1,7 @@
 package com.sofkau.qa.tiendaproductos.datos;
 
 import com.sofkau.qa.tiendaproductos.Producto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -8,7 +9,6 @@ import java.util.List;
 
 @Service
 public class TiendaImp implements Tienda{
-
     List<Producto> productos = new ArrayList<>();
     @Override
     public void agregar(Producto producto) {
@@ -24,4 +24,5 @@ public class TiendaImp implements Tienda{
     public List<Producto> getLista() {
         return this.productos;
     }
+
 }

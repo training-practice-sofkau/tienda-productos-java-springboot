@@ -22,7 +22,7 @@ public class ProductosStock {
     Producto espinillera = new Producto(UUID.randomUUID().toString(),"Espinillera", 6000);
     Producto camiseta = new Producto(UUID.randomUUID().toString(),"Camiseta", 15000);
     Producto camisilla = new Producto(UUID.randomUUID().toString(),"camisilla", 5000);
-    Producto balon = new Producto(UUID.randomUUID().toString(),"Balón", 30000);
+    Producto balon = new Producto(UUID.randomUUID().toString(),"Balo    n", 30000);
     Producto gorra = new Producto(UUID.randomUUID().toString(),"Gorra", 8000);
     Producto vendaje = new Producto(UUID.randomUUID().toString(),"Vendaje", 3000);
 

@@ -18,8 +18,6 @@ public class TiendaProductosApplication {
 	 * Se utiliza la anotación Autowired para genera una instancia de StockMethods, y así acceder a la
 	 * implementación de los métodos definidos en estas interfaz.
 	 */
-	@Autowired
-	public ProductosStock productosStock;
 
 	public static void main(String[] args) {
 
