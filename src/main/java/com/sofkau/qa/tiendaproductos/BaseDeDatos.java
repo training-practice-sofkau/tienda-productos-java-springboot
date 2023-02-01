@@ -7,7 +7,7 @@ import java.util.List;
 public class BaseDeDatos implements Produccion{
     private static BaseDeDatos baseDeDatos=null;
     private List<Factura> facturas=new ArrayList<>();
-    private List<Producto> productos= Arrays.asList(new ProductoBuilder().nombre("Sarten Antiadherente")
+    private ArrayList<Producto> productos= new ArrayList<>(List.of(new ProductoBuilder().nombre("Sarten Antiadherente")
             .cantidad(10).precio(50000).descripcion("Sarten de acero inoxidable con revestimiento antiadherente.").build(),
             new ProductoBuilder().nombre("Batidora de Mano").cantidad(15)
                     .precio(70000).descripcion("Batidora eléctrica con potencia de 300W y varillas de acero inoxidable.").build(),
@@ -26,13 +26,16 @@ public class BaseDeDatos implements Produccion{
             new ProductoBuilder().nombre("Plancha de Asar")
                     .cantidad(10).precio(100000).descripcion("Plancha con revestimiento antiadherente y control de temperatura ajustable.").build(),
             new ProductoBuilder().nombre("Microondas")
-                    .cantidad(5).precio(150000).descripcion("Microondas con capacidad de 20 litros y programas de cocción automáticos.").build());
+                    .cantidad(5).precio(150000).descripcion("Microondas con capacidad de 20 litros y programas de cocción automáticos.").build()));
     private BaseDeDatos() {
     }
     public static BaseDeDatos getBaseDeDatos(){
         if(baseDeDatos==null)
             baseDeDatos=new BaseDeDatos();
         return baseDeDatos;
+    }
+    public void setProductos(ArrayList<Producto> productos) {
+        this.productos = productos;
     }
     public List<Factura> getFacturas(){
         return facturas;
@@ -45,7 +48,7 @@ public class BaseDeDatos implements Produccion{
     }
     @Override
     public void addProducto(Producto producto){
-        this.productos.add(producto);
+        BaseDeDatos.getBaseDeDatos().getProductos().add(producto);
     }
 
 }

@@ -3,6 +3,14 @@ public class Producto {
     private String nombre,descripcion;
     private int cantidad;
     private long precio;
+    public Producto() {
+    }
+    public Producto(String nombre, String descripcion, int cantidad, long precio) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.cantidad = cantidad;
+        this.precio = precio;
+    }
     public String getNombre() {
         return nombre;
     }

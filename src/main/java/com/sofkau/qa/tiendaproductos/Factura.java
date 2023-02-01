@@ -6,12 +6,13 @@ public class Factura {
     private Cliente cliente;
     private LocalDateTime fecha;
     private Producto producto;
-    public static void crearFactura(Cliente cliente,Producto producto){
-        Factura factura=new Factura(cliente,LocalDateTime.now(),producto);
+    public static void crearFactura(Cliente cliente,Producto producto,int cantidad){
+        Factura factura=new Factura(cliente,LocalDateTime.now(),producto,cantidad);
         BaseDeDatos.getBaseDeDatos().addFacturas(factura);
         System.out.println(factura);
     }
-    public Factura(Cliente cliente, LocalDateTime fecha, Producto producto) {
+    public Factura(Cliente cliente, LocalDateTime fecha, Producto producto,int cantidad){
+        producto.setCantidad(cantidad);
         this.cliente = cliente;
         this.fecha = fecha;
         this.producto = producto;
@@ -19,7 +20,7 @@ public class Factura {
     @Override
     public String toString() {
         DateTimeFormatter formato= DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        return "Al cliente: "+cliente.getNombre()+
+        return "El cliente: "+cliente.getNombre()+
                 "\nIdentificado: "+cliente.getId()+
                 "\nen la fecha: "+fecha.format(formato)+
                 "\nCompró el producto: "+producto.getNombre()+
