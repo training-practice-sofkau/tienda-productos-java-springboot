@@ -1,8 +1,11 @@
 package com.sofkau.qa.tiendaproductos;
 
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class StockTienda {
 
     private List<Producto> stock= new ArrayList<>();

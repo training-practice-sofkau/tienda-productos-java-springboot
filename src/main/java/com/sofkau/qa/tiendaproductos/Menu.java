@@ -1,8 +1,11 @@
 package com.sofkau.qa.tiendaproductos;
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+@Service
 public class Menu {
         public void menuPrincipal(){
             Scanner scanner = new Scanner(System.in);

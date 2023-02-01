@@ -1,9 +1,12 @@
 package com.sofkau.qa.tiendaproductos;
 
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+@Service
 public class Comprar {
 
 
@@ -81,7 +84,8 @@ public class Comprar {
             String nombre = scanner.nextLine();
 
             System.out.println(" Factura para: " + nombre);
-            System.out.println("Compra realizada en Tienda Fashion por un valor de: " + total);
+            System.out.println(" Compra realizada en Tienda Fashion por un valor de: " + total);
+            System.out.println(" Gracias por su Compra  ");
 
 
         } else if (confirmar == 2) {
