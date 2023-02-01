@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 
-@Service
+
 public class Factura {
     private ArrayList<Producto> productos;
     private String cliente;
