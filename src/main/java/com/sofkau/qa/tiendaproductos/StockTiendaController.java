@@ -31,8 +31,20 @@ public class StockTiendaController {
                 producto.getNombre(),
                 producto.getPrecio(),
                 producto.getCantidad());
-        this.productoRequest.add(newProducto);
+        StockTienda.stock.add(newProducto);
         return new ResponseEntity(newProducto, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{productId}")
+    public ResponseEntity updateNote(@PathVariable("productId") int id,
+                                     @RequestBody Producto producto){
+        List<Producto> newList = productoRequest.stream()
+                //Si n.getId
+                //n se vuelve un iterator
+                .map(n -> n.getId() == id?producto:n).collect(Collectors.toList());
+
+        this.productoRequest = newList;
+        return new ResponseEntity(producto, HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/{productId}")

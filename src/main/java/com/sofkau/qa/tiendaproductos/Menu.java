@@ -22,6 +22,7 @@ public class Menu {
                 switch (opcion) {
                     case 1:
                         StockTienda mostrarProductos = new StockTienda();
+                        mostrarProductos.agregarPrenda(11, "Correas", 30000, 30);
                         List<Producto> pro = mostrarProductos.getProductos();
                         mostrarProductos.mostrar(pro);
                         break;
@@ -29,7 +30,6 @@ public class Menu {
                     case 2:
                         Comprar comprarProductos = new Comprar();
                         comprarProductos.elegirProducto();
-
                         break;
 
                     case 3:
