@@ -14,34 +14,20 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TiendaProductosApplication implements CommandLineRunner {
+public class TiendaProductosApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(TiendaProductosApplication.class, args);
     }
 
 
-
-    @Autowired
-    Invoice invoice;
-
-    @Override
-    public void run(String... args) throws Exception {
+   /* public void run(String... args) throws Exception {
         Scanner scan = new Scanner(System.in);
         System.out.println("************** Bienvenido a la tienda de frutas **************");
         System.out.println("");
 
-        Product Manzana = new Product("Manzana", 400, 1, 1);
-        Product Pera = new Product("Pera", 450, 1, 2);
-        Product durazno = new Product("Banano", 320, 1, 3);
-        Product Naranja = new Product("Naranja", 370, 1, 4);
-        Product Uva = new Product("Uva", 150, 1, 5);
-        Product Kiwi = new Product("Kiwi", 120, 1, 6);
-        Product Melón = new Product("Melón", 235, 1, 7);
-        Product Fresa = new Product("Fresa", 356, 1, 8);
-        Product Mango = new Product("Mango", 278, 1, 9);
-        Product Papaya = new Product("Papaya", 356, 1, 10);
-        List<Product> listProduct = Arrays.asList(Manzana, Pera, durazno, Naranja, Uva, Kiwi, Melón, Fresa, Mango, Papaya);
+
+
         List<Invoice> facturas = new ArrayList<>();
         List<Product> listCarritoDeCompra = new ArrayList<>();
         boolean whileapp = true;
@@ -220,6 +206,6 @@ public class TiendaProductosApplication implements CommandLineRunner {
 
         }
 
-    }
-
+   }
+*/
 }

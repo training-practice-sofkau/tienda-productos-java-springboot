@@ -59,6 +59,9 @@ public class Product {
        return this.amount * this.price;
     };
 
+    public Product() {
+    }
+
     @Override
     public String toString() {
         return "Product{" +
