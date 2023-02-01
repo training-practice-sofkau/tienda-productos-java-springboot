@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class Comprar {
 
 
-
     public List<Orden> elegirProducto(){
 
         List<Orden> orden = new ArrayList<>();
@@ -21,12 +20,15 @@ public class Comprar {
         Scanner cant = new Scanner(System.in);
 
         System.out.println("Selecciona los productos de la lista:");
-
         /**
          * Muestra el stock de la Tienda
          */
-        StockTienda stockTienda = new StockTienda();
-        List<Producto> products = stockTienda.getProductos();
+
+        StockTienda mostrarProductos = new StockTienda();
+        List<Producto> products = mostrarProductos.getProductos();
+        mostrarProductos.mostrar(products);
+       /* StockTienda stockTienda = new StockTienda();
+        List<Producto> products = stockTienda.getProductos();*/
 
 
         System.out.println("Ingresa el numero de los productos que deseas seleccionar (Ingresa 0 para terminar): ");
@@ -66,27 +68,11 @@ public class Comprar {
         System.out.println("El total de su compra seria: " + total);
         System.out.println("-------------------------------");
 
-        System.out.println("Desea confirmar la compra: \n 1 Si \n 2 No");
-        int confirmar = input.nextInt();
 
-        if (confirmar == 1) {
-            System.out.println("Compra confirmada");
-            Factura factura = new Factura();
-            String fact = factura.generarFactura();
-            return orden;
-
-
-        } else if (confirmar == 2) {
-            System.out.println("No se registro ninguna compra");
-
-        } else {
-            System.out.println("Por favor, ingresa un numero valido");
-        }
 
         return orden;
 
     }
-
 
         /**
          * Compara los numeros ingresados por el usuario y el stock de la tienda
@@ -100,6 +86,7 @@ public class Comprar {
                 System.out.println(" " + p.getNombre() + " " + p.getPrecio() );
 
             }*/
+
 
 }
 

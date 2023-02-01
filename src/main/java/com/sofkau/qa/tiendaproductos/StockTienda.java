@@ -20,11 +20,20 @@ public class StockTienda {
         stock.add(new Producto(9,"Leggin deportivo", 76000, 80 ));
         stock.add(new Producto(10, "Sudadera Hombre", 68000, 100 ));
 
-        for (Producto p: stock) {
+        /*for (Producto p: stock) {
+            System.out.println(" "+ p.getId()+ "  " + p.getNombre() + " Precio: " + p.getPrecio());
+        }
+        System.out.println("--------------------------- ");*/
+        return stock;
+
+    }
+
+    public void mostrar(List<Producto> product){
+
+        for (Producto p: product) {
             System.out.println(" "+ p.getId()+ "  " + p.getNombre() + " Precio: " + p.getPrecio());
         }
         System.out.println("--------------------------- ");
-        return stock;
 
     }
 

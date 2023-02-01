@@ -5,15 +5,15 @@ import java.util.Scanner;
 
 public class Factura {
 
-    Comprar comprar = new Comprar();
 
-    public String generarFactura (){
+    public String generarFactura (List<Orden> listaProductos){
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Introduce tu nombre para generar factura: ");
         String nombre = scanner.nextLine();
 
-        List<Orden> listaProductos = comprar.elegirProducto();
+
+
         StringBuilder factura = new StringBuilder();
 
         factura.append("Factura para: " + nombre + "\n");
@@ -27,6 +27,7 @@ public class Factura {
 
         factura.append("Total: " + total);
         return factura.toString();
+
 
 
     }
