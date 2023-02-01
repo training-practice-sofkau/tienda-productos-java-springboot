@@ -37,6 +37,7 @@ public class Ferreteria {
 
     public void productosDisponibles() {
         this.productoStock = new ArrayList<>();
+
         int indice = 1;
         for (Producto p : productoList) {
             if (p.getStock() > 0) {
@@ -51,6 +52,9 @@ public class Ferreteria {
 
     }
 
+    /**
+     * Método que imprime el historial de ventas
+     */
     public void imprimirHistorialVentas() {
         int contador = 1;
         for (Factura factura :this.facturas) {
@@ -60,7 +64,9 @@ public class Ferreteria {
 
     }
 
-
+    /**
+     * Método para iniciar con la compra de productos
+     */
     public void iniciarCompra() {
         Scanner in = new Scanner(System.in);
         System.out.println("Introduce tu nombre:");
@@ -114,4 +120,8 @@ public class Ferreteria {
         facturas.add(facturaEnCurso);
     }
 
+    public List<Producto> getProductoStock() {
+        this.productosDisponibles();
+        return productoStock;
+    }
 }
