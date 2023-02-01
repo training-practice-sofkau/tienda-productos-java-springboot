@@ -15,7 +15,6 @@ public class Controller {
 
     public Cafeteria cafeteria;
 
-
     public Controller() {
         super();
         this.cafeteria = new Cafeteria();
@@ -54,5 +53,15 @@ public class Controller {
         return new ResponseEntity(nuevoProducto, HttpStatus.CREATED);
     }
 
-
+    @PutMapping("/producto/actualizar/{ID}")
+    public ResponseEntity actualizarProducto(@PathVariable("ID") int ID,
+                                             @RequestBody Producto producto) {
+        List<Producto> productos = this.cafeteria.getProductoList();
+        producto.setID(ID);
+        productos = productos.stream()
+                .map(prod -> prod.getID() == ID ? producto : prod).collect(Collectors.toList());
+        this.cafeteria.setProductoList(productos);
+        this.cafeteria.mostrarProductos();
+        return new ResponseEntity(producto, HttpStatus.ACCEPTED);
+    }
 }

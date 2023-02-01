@@ -2,6 +2,9 @@ package com.sofkau.qa.tiendaproductos;
 import java.util.Scanner;
 
 public class Producto {
+    /**
+     * Atributos
+     */
     private String nombreProducto;
     private int valor;
     private int stock;
@@ -23,6 +26,9 @@ public class Producto {
         this.stock = stock;
     }
 
+    /**
+     * Constructor que permitirá realizar el modificar y eliminar de API Rest
+     */
     public Producto(int ID, String nombreProducto, int valor, int stock) {
         this.ID = ID;
         this.nombreProducto = nombreProducto;
