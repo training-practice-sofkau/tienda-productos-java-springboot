@@ -3,9 +3,7 @@ package com.sofkau.qa.tiendaproductos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,9 +17,18 @@ public class FerreteriaControlador {
         this.ferreteria = ferreteria;
     }
 
-    @GetMapping("/productos")
+    @GetMapping("/mostrarproductos")
     public ResponseEntity productosDisponibles() {
         List<Producto> productos = this.ferreteria.getProductoStock();
         return new ResponseEntity(productos, HttpStatus.FOUND);
     }
+
+    @PostMapping("/agregarproductos")
+    public ResponseEntity agregarProducto(@RequestBody Producto producto) {
+        Producto nuevoProducto = new Producto(producto.getNombre(),producto.getPrecio(),producto.getStock());
+        this.ferreteria.agregarProductos(nuevoProducto);
+        return new ResponseEntity(nuevoProducto, HttpStatus.CREATED);
+    }
+
+
 }
