@@ -117,6 +117,7 @@ public class Cafeteria {
         int contador = 1;
         for (Factura factura : this.facturas){
             System.out.println("#" + contador + "- " + factura.getNombreCliente() + " Total: " + factura.getTotal());
+            contador = contador + 1;
         }
     }
 
