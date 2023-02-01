@@ -1,10 +1,10 @@
-package com.sofkau.qa.tiendaproductos;
+package com.rest.example.restexample;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TiendaProductosApplicationTests {
+class RestExampleApplicationTests {
 
 	@Test
 	void contextLoads() {
