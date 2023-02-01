@@ -12,6 +12,9 @@ import java.util.Scanner;
 public class TiendaProductosApplication {
 	@Autowired
 	public TiendaDeJuegos tienda;
+	@Autowired
+	FacturaService facturaService;
+
 	public static void main(String[] args) {
 		SpringApplication.run(TiendaProductosApplication.class, args);
 	}
@@ -34,8 +37,8 @@ public class TiendaProductosApplication {
 						tienda.addToCart();
 						break;
 					case 2:
-						break;
-					case 3:
+						System.out.println("---Registro de Facturas---");
+						System.out.println(facturaService.getFacturas());
 						break;
 					default:
 						System.out.println("Opcion Incorrecta");
