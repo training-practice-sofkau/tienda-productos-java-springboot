@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Comprar {
 
 
-    public List<Orden> elegirProducto(){
+    public void elegirProducto(){
 
         List<Orden> orden = new ArrayList<>();
         int total = 0;
@@ -68,9 +68,31 @@ public class Comprar {
         System.out.println("El total de su compra seria: " + total);
         System.out.println("-------------------------------");
 
+        Scanner input2 = new Scanner(System.in);
+
+        System.out.println("Desea confirmar la compra: \n 1 Si \n 2 No");
+        int confirmar = input2.nextInt();
+
+        if (confirmar == 1) {
+            System.out.println("Compra confirmada");
+
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Introduce tu nombre para generar factura: ");
+            String nombre = scanner.nextLine();
+
+            System.out.println(" Factura para: " + nombre);
+            System.out.println("Compra realizada en Tienda Fashion por un valor de: " + total);
 
 
-        return orden;
+        } else if (confirmar == 2) {
+            System.out.println("No se registro ninguna compra");
+
+        } else {
+            System.out.println("Por favor, ingresa un numero valido");
+        }
+
+
+
 
     }
 

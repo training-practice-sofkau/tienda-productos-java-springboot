@@ -27,29 +27,6 @@ public class Menu {
                         Comprar comprarProductos = new Comprar();
                         comprarProductos.elegirProducto();
 
-                        Scanner input = new Scanner(System.in);
-
-                        System.out.println("Desea confirmar la compra: \n 1 Si \n 2 No");
-                        int confirmar = input.nextInt();
-
-                        if (confirmar == 1) {
-                            System.out.println("Compra confirmada");
-
-
-                            Factura factura = new Factura();
-                            /*List<Orden> listaProducto = comprarProductos.elegirProducto();
-                            System.out.println(" " + listaProducto.size());*/
-
-                            List<Orden> listaProducto = new ArrayList<>();
-                            String fact = factura.generarFactura(listaProducto);
-                            System.out.println(" " + fact);
-
-                        } else if (confirmar == 2) {
-                            System.out.println("No se registro ninguna compra");
-
-                        } else {
-                            System.out.println("Por favor, ingresa un numero valido");
-                        }
                         break;
 
                     case 3:
