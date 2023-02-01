@@ -88,4 +88,8 @@ public class TiendaDeJuegos {
             }
         }
     }
+
+    public List<Producto> getProducts() {
+        return products;
+    }
 }
