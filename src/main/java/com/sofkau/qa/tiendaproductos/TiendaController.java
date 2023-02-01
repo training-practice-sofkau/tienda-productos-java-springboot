@@ -39,4 +39,11 @@ public class TiendaController {
         BaseDeDatos.getBaseDeDatos().setProductos(productos);
         return new ResponseEntity(Catalogo.getCatalogo().mostrarProducto(producto),HttpStatus.ACCEPTED);
     }
+    @DeleteMapping("/delete/producto/{nombre}")
+    public ResponseEntity eliminacionProducto(@PathVariable("nombre") String nombre){
+        ArrayList<Producto> productos=(ArrayList<Producto>)BaseDeDatos.getBaseDeDatos().getProductos().stream()
+                .filter(producto -> !producto.getNombre().equalsIgnoreCase(nombre)).collect(Collectors.toList());
+        BaseDeDatos.getBaseDeDatos().setProductos(productos);
+        return new ResponseEntity(Catalogo.getCatalogo().mostrarProductos(),HttpStatus.GONE);
+    }
 }
