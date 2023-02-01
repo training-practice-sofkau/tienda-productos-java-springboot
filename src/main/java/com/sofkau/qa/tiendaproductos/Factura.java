@@ -1,22 +1,30 @@
 package com.sofkau.qa.tiendaproductos;
 
-import org.springframework.stereotype.Component;
+import java.util.ArrayList;
+import java.util.List;
 
-@Component
 public class Factura {
-    private final String nombreCliente;
-    private final String nombreComponente;
-    private final int cantidad;
+    private final List<Compra> compras = new ArrayList<>();
 
-    public Factura(String nombreCliente, String nombreComponente, int cantidad) {
-        this.nombreCliente = nombreCliente;
-        this.nombreComponente = nombreComponente;
-        this.cantidad = cantidad;
+    public void add(Compra compra) {
+        compras.add(compra);
     }
 
-    public String getFactura() {
-        return "Cliente: " + nombreCliente +
-                "\nComponente: " + nombreComponente +
-                "\nCantidad: " + cantidad;
+    public void mostrar(boolean selector) {
+        final int[] total = {0};
+        if (selector) {
+            compras.forEach(compra -> {
+                System.out.println("Compra n°" + (compras.indexOf(compra) + 1) + " " + compra.getCompra());
+            });
+        } else {
+            compras.forEach(compra -> {
+                System.out.println("Compra n°" + (compras.indexOf(compra) + 1) + " " + compra.getCompra());
+            });
+            compras.forEach(compra -> {
+                total[0] += compra.total;
+            });
+            System.out.println("Total a pagar: $" + total[0]);
+        }
+
     }
 }
