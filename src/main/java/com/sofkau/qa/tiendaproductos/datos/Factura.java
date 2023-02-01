@@ -16,6 +16,11 @@ public class Factura {
         return tienda.getLista();
     }
 
+    /**
+     *
+     * TODO: revisar lógica para setear precio producto comprado en el primer POST Request de sesion
+     */
+
     public int setPrecioProducto(){
         for (Producto productoComprado : this.getProductosComprados()){
             for (Producto productoStock : productosStock.getStock()){
