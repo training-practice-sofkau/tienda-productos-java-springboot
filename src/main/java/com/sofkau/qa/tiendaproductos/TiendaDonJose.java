@@ -1,14 +1,14 @@
 package com.sofkau.qa.tiendaproductos;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-
+@Component
 public class TiendaDonJose {
-
     private String nombre;
     List<Producto> productos;
     List<Cliente> registro;
@@ -21,21 +21,24 @@ public class TiendaDonJose {
 public TiendaDonJose(String nombre) {
         this.nombre = nombre;
         productos = Arrays.asList(
-                new Producto("sal",100,3000),
-                new Producto("azucar",100,2500),
-                new Producto("cereal",100,5000),
-                new Producto("aceite",100,7000),
-                new Producto("cerveza",100,2800),
-                new Producto("ron",100,60000),
-                new Producto("aguariente",100,50000),
-                new Producto("doritos",100,4000),
-                new Producto("mantequilla",100,3000),
-                new Producto("salsa de tomate",100,4500)
+                new Producto("1","sal",100,3000),
+                new Producto("2","azucar",100,2500),
+                new Producto("3","cereal",100,5000),
+                new Producto("4","aceite",100,7000),
+                new Producto("5","cerveza",100,2800),
+                new Producto("6","ron",100,60000),
+                new Producto("7","aguariente",100,50000),
+                new Producto("8","doritos",100,4000),
+                new Producto("9","mantequilla",100,3000),
+                new Producto("10","salsa de tomate",100,4500)
         );
         registro = Arrays.asList(new Cliente("Andres",44444444),new Cliente("Juan",666666666));
         }
 
-        public void verRegistro(){
+    public TiendaDonJose() {
+    }
+
+    public void verRegistro(){
             System.out.println(registro.toString());
         }
 
@@ -71,6 +74,10 @@ public TiendaDonJose(String nombre) {
     public void totalFactura(Cliente cliente){
         List<Integer> totalxcantidad  = cliente.carritoDeCompra.stream().map(producto -> producto.getPrecio() * producto.getCantidadProducto()).collect(Collectors.toList());
         this.totalFactura = totalxcantidad.stream().reduce(0,(a,b) -> a + b );
+    }
+
+    public void agregarProducto(Producto producto) {
+      productos.add(producto);
     }
 }
 

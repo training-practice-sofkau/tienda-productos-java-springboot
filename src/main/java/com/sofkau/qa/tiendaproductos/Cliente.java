@@ -1,11 +1,16 @@
 package com.sofkau.qa.tiendaproductos;
 
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
+
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.*;
 
+@Service
 public class Cliente {
-
+    String id = String.valueOf(UUID.randomUUID());
     private String nombre;
     private int Cc;
     List<Producto> carritoDeCompra;
@@ -14,6 +19,9 @@ public class Cliente {
         this.nombre = nombre;
         this.Cc = cc;
         carritoDeCompra  = new ArrayList<Producto>();
+    }
+
+    public Cliente() {
     }
 
     public String getNombre() {
@@ -30,9 +38,9 @@ public class Cliente {
     @Override
     public String toString() {
         return "Cliente{" +
-                "nombre='" + nombre + '\'' +
+                "id='" + id + '\'' +
+                ", nombre='" + nombre + '\'' +
                 ", Cc=" + Cc +
-                ", carritoDeCompra=" + carritoDeCompra +
                 '}';
     }
 
