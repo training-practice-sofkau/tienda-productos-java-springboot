@@ -54,11 +54,12 @@ public class Ferreteria {
     public void imprimirHistorialVentas() {
         int contador = 1;
         for (Factura factura :this.facturas) {
-            System.out.println("#" + contador + " - " + factura.getNombreCliente() + "");
+            System.out.println("#" + contador + " - " + factura.getNombreCliente() + " $:" + factura.getTotal() );
             contador = contador + 1;
         }
 
     }
+
 
     public void iniciarCompra() {
         Scanner in = new Scanner(System.in);
@@ -66,6 +67,7 @@ public class Ferreteria {
         String nombreCliente = in.nextLine();
 
         this.facturaEnCurso = new Factura(nombreCliente);
+        double totalAcumulado =0;
 
         boolean continuarComprando = true;
         while (continuarComprando) {
@@ -92,15 +94,24 @@ public class Ferreteria {
             int cantidad = in.nextInt();
             in.nextLine();
 
-            if (cantidad > unidadesDisponibles) {
+            facturaEnCurso.setCantidad(cantidad);
+
+            double total = facturaEnCurso.getCantidad() * productoSeleccionado.getPrecio();
+            totalAcumulado += total;
+            facturaEnCurso.setTotal(totalAcumulado);
+
+            if (facturaEnCurso.getCantidad() > unidadesDisponibles) {
                 System.out.println("Lo sentimos no tenemos suficiente stock");
             }
-            facturaEnCurso.agregarCompra(productoSeleccionado,cantidad);
+            facturaEnCurso.agregarCompra(productoSeleccionado, facturaEnCurso.getCantidad(), facturaEnCurso.getTotal());
+
         }
 
-        System.out.println("Cliente" + facturaEnCurso.getNombreCliente());
+        System.out.println("Cliente: " + facturaEnCurso.getNombreCliente());
         System.out.println("Productos comprados:");
         facturaEnCurso.mostrarFactura();
+        System.out.println("Total: $" + facturaEnCurso.getTotal());
+        facturas.add(facturaEnCurso);
     }
 
 }
