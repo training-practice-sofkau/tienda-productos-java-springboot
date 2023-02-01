@@ -17,6 +17,12 @@ public class Store {
         this.purchaseOrdersList = new ArrayList<PurchaseOrder>();
     }
 
+
+    public Store(List<PurchaseOrder> purchaseOrdersList, List<Product> productList) {
+        this.purchaseOrdersList = purchaseOrdersList;
+        this.productList = productList;
+    }
+
     public void HistoricalList() {
        System.out.println("Lista de facturas ");
        this.purchaseOrdersList.stream().forEach(purchaseOrder -> {

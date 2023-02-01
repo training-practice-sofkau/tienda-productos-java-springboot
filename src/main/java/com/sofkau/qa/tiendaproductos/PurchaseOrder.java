@@ -24,6 +24,9 @@ public class PurchaseOrder {
 
     }
 
+    public PurchaseOrder(String id, String id1, List<Detail> detailList, double totalAmount) {
+    }
+
     public void addProduct(String id, Product product, int quantity) {
         double cacularAmount = product.getPrice() * quantity;
         Detail  detalle =  new Detail(id, product, quantity, cacularAmount);
