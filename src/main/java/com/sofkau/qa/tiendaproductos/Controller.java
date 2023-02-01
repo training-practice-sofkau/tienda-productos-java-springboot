@@ -7,27 +7,52 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/v1/rest")
 public class Controller {
 
-    //List<Cafeteria> cafeterias = new ArrayList<>();
-    List<Producto> productos = new ArrayList<>();
+    public Cafeteria cafeteria;
 
-    @GetMapping
-    public ResponseEntity getAllProductos(){
+
+    public Controller() {
+        super();
+        this.cafeteria = new Cafeteria();
+        this.llenar();
+    }
+
+    @GetMapping("/producto/listar")
+    public ResponseEntity productosDisponibles() {
+        List<Producto> productos = this.cafeteria.getProductoEnStock();
         return new ResponseEntity(productos, HttpStatus.FOUND);
     }
 
-    @PostMapping
-    public ResponseEntity createNewProduct(@RequestBody Producto producto){
-        Producto newProducto = new Producto(
+    private void llenar() {
+        Producto cafe = new Producto("Café americano", 2000, 0);
+        Producto mocha = new Producto("Café mocha", 5000, 15);
+        Producto espresso = new Producto("Café espresso", 3500, 20);
+        Producto cappuccino = new Producto("Cappuccino", 5000, 21);
+        Producto latte = new Producto("Café latte", 40000, 15);
+        Producto coldbrew = new Producto("Cold Brew", 8000, 25);
+
+        cafeteria.agregarProductos(cafe);
+        cafeteria.agregarProductos(mocha);
+        cafeteria.agregarProductos(espresso);
+        cafeteria.agregarProductos(cappuccino);
+        cafeteria.agregarProductos(latte);
+        cafeteria.agregarProductos(coldbrew);
+    }
+
+    @PostMapping("/producto/crear")
+    public ResponseEntity crearProducto(@RequestBody Producto producto) {
+        Producto nuevoProducto = new Producto(
                 producto.getNombreProducto(),
                 producto.getValor(),
                 producto.getStock());
-        this.productos.add(newProducto);
-        return new ResponseEntity(newProducto, HttpStatus.CREATED);
+        this.cafeteria.agregarProductos(nuevoProducto);
+        return new ResponseEntity(nuevoProducto, HttpStatus.CREATED);
     }
+
 
 }

@@ -13,6 +13,7 @@ public class Cafeteria {
     public List<Producto> productoEnStock;
     private ArrayList<Factura> facturas;
     private Factura facturaEnCurso;
+    private int ID = 1;
 
     /**
      * Constructor
@@ -55,6 +56,8 @@ public class Cafeteria {
      */
     public void agregarProductos(Producto producto) {
         System.out.println("Producto añadido: " + producto.getNombreProducto());
+        producto.setID(this.ID);
+        this.ID++;
         productoList.add(producto);
     }
 
@@ -125,4 +128,19 @@ public class Cafeteria {
     public String toString() {
         return "\n---Lista de productos---\n" + productoList;
     }
+
+    public List<Producto> getProductoEnStock() {
+        this.mostrarProductos();
+        return productoEnStock;
+    }
+
+    public List<Producto> getProductoList() {
+        return productoList;
+    }
+
+    public void setProductoList(List<Producto> productoList) {
+        this.productoList = productoList;
+    }
+
+
 }

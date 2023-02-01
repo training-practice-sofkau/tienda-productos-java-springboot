@@ -5,6 +5,7 @@ public class Producto {
     private String nombreProducto;
     private int valor;
     private int stock;
+    private int ID;
 
     public Producto(){
 
@@ -17,6 +18,13 @@ public class Producto {
      * @param stock
      */
     public Producto(String nombreProducto, int valor, int stock) {
+        this.nombreProducto = nombreProducto;
+        this.valor = valor;
+        this.stock = stock;
+    }
+
+    public Producto(int ID, String nombreProducto, int valor, int stock) {
+        this.ID = ID;
         this.nombreProducto = nombreProducto;
         this.valor = valor;
         this.stock = stock;
@@ -47,6 +55,14 @@ public class Producto {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     @Override

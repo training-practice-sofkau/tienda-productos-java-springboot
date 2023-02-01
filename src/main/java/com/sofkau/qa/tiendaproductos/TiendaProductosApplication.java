@@ -41,7 +41,7 @@ public class TiendaProductosApplication {
 			cafeteria.agregarProductos(coldbrew);
 
 			Scanner entrada = new Scanner(System.in);
-			boolean ejecutarMenu = true;
+			boolean ejecutarMenu = false;
 
 			/**
 			 * Menú principal de la aplicación
