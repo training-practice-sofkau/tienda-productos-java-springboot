@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 
-
 public class Producto {
 
     private String id;
@@ -65,13 +64,12 @@ public class Producto {
                 '}';
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Producto producto = (Producto) o;
-        return Double.compare(producto.precio, precio) == 0 && cantidad == producto.cantidad && id.equals(producto.id) && nombre.equals(producto.nombre);
+        return Objects.equals(id, producto.id) && Objects.equals(nombre, producto.nombre) && Objects.equals(precio, producto.precio) && Objects.equals(cantidad, producto.cantidad);
     }
 
     @Override
@@ -79,12 +77,12 @@ public class Producto {
         return Objects.hash(id, nombre, precio, cantidad);
     }
 
-    /**
+/**
 
-     public double calcularPrecio(double precio, int cantidad) {
-     return precio * cantidad;
-     }
-     */
+ public double calcularPrecio(double precio, int cantidad) {
+ return precio * cantidad;
+ }
+ */
 
 
 }

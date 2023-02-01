@@ -43,7 +43,6 @@ public class productoController {
      */
     @GetMapping("/listproduct")
     public ResponseEntity<List<Producto>> findAll() {
-
         return new ResponseEntity<>(productos, HttpStatus.OK);
     }
 
@@ -73,8 +72,7 @@ public class productoController {
 
     @PutMapping("/{id}")
     public ResponseEntity update(@PathVariable("id") String id, @RequestBody Producto producto) {
-        List<Producto> newList = productos.stream().map(n -> n.getId().equals(id) ? producto : n).collect(Collectors.toList());
-
+        List<Producto> newList = productos.stream().map(n -> n.getId().equals(id)?producto:n).collect(Collectors.toList());
         this.productos = newList;
         return new ResponseEntity(producto, HttpStatus.ACCEPTED);
     }
