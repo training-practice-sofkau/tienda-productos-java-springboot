@@ -1,50 +1,35 @@
 package com.sofkau.qa.tiendaproductos;
 
 public class Producto {
+    private String name;
+    private double price;
+    private int quantity;
 
-    private String nombreProducto;
-    private Integer costo;
-
-    private Integer cantidad;
-
-
-    public Producto(String nombreProducto, Integer costo, Integer cantidad) {
-        this.nombreProducto = nombreProducto;
-        this.costo = costo;
-        this.cantidad = cantidad;
+    public Producto(String name, double price) {
+        this.name = name;
+        this.price = price;
+        this.quantity = 1;
     }
 
-
-    public String getNombreProducto() {
-        return nombreProducto;
+    public Producto(String name, double price, int quantity) {
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
     }
 
-    public void setNombreProducto(String nombreProducto) {
-        this.nombreProducto = nombreProducto;
+    public String getName() {
+        return this.name;
     }
 
-    public Integer getCosto() {
-        return costo;
+    public double getPrice() {
+        return this.price;
     }
 
-    public void setCosto(Integer costo) {
-        this.costo = costo;
+    public int getQuantity() {
+        return this.quantity;
     }
 
-    public Integer getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(Integer cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    @Override
     public String toString() {
-        return "Producto{" +
-                "nombreProducto='" + nombreProducto + '\'' +
-                ", costo=" + costo +
-                ", cantidad=" + cantidad +
-                '}';
+        return this.name + " - $" + this.price + " x " + this.quantity;
     }
 }

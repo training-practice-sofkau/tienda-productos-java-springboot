@@ -6,85 +6,98 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
-
 @SpringBootApplication
-public class TiendaProductosApplication  implements CommandLineRunner {
-
+public class TiendaProductosApplication implements CommandLineRunner {
 
 
 	public static void main(String[] args) {
 		SpringApplication.run(TiendaProductosApplication.class, args);
 	}
 
-
 	@Override
 	public void run(String... args) throws Exception {
 
-		Scanner entrada = new Scanner(System.in);
+		Scanner scan = new Scanner(System.in);
+		List<Producto> products = new ArrayList<Producto>();
+		List<Invoice> invoices = new ArrayList<Invoice>();
+		String name = "";
 
-		List<Producto> productoList = new ArrayList<>();
+			products.add(new Producto("Full Metal Alchemist 1", 10.0));
+			products.add(new Producto("Jujutsu Kaisen 2", 20.0));
+			products.add(new Producto("Bochii the Rock 3", 30.0));
+			products.add(new Producto("Kimetsu no Yaiba 4", 40.0));
+			products.add(new Producto("Sono Bisque Doll 5", 50.0));
+			products.add(new Producto("Vinland SAGA 6", 60.0));
+			products.add(new Producto("Shingeky no Kyojin 7", 70.0));
+			products.add(new Producto("Ore monogatari 8", 80.0));
+			products.add(new Producto("Shuumatsu no Valquirie 9", 90.0));
+			products.add(new Producto("Baki 10", 100.0));
 
-		productoList.add(new Producto("Manga1", 10, 12));
-		productoList.add(new Producto("Manga2", 14, 15));
-		productoList.add(new Producto("Manga3", 11, 7));
-		productoList.add(new Producto("Manga4", 1, 9));
-		productoList.add(new Producto("Manga5", 15, 88));
-		productoList.add(new Producto("Anime1", 11, 2));
-		productoList.add(new Producto("Anime2", 19, 76));
-		productoList.add(new Producto("Anime3", 10, 7));
-		productoList.add(new Producto("Anime4", 3, 23));
-		productoList.add(new Producto("Anime5", 7, 89));
+			boolean running = true;
+			while (running) {
+				System.out.println("\n--- Menu ---");
+				System.out.println("1. Ver Anime");
+				System.out.println("2. Comprar");
+				System.out.println("3. invoices");
+				System.out.println("4. Cambiar otaku");
+				System.out.println("5. Salir");
+				System.out.print("Escoja las opciones anteriores: ");
 
+				int choice = scan.nextInt();
+				switch (choice) {
+					case 1:
+						System.out.println("\n--- Lista de animes ---");
+						for (int i = 0; i < products.size(); i++) {
+							System.out.println(i + 1 + ". " + products.get(i).toString());
+						}
+						break;
+					case 2:
+						System.out.println("\n--- Comprar ---");
+						ArrayList<Producto> cart = new ArrayList<Producto>();
+						double total = 0;
+						boolean buying = true;
+						while (buying) {
+							System.out.println("Ingresa el id del producto (0 para finalizar): ");
+							int productNum = scan.nextInt();
+							if (productNum == 0) {
+								buying = false;
+							} else {
+								Producto product = products.get(productNum - 1);
+								System.out.println("Cuantos?: ");
+								int quantity = scan.nextInt();
+								total += product.getPrice() * quantity;
+								cart.add(new Producto(product.getName(), product.getPrice(), quantity));
+							}
+						}
+						Invoice invoice = new Invoice(name, total, cart);
+						invoices.add(invoice);
+						System.out.println("\n--- Invoice ---");
+						System.out.println(invoice.toString());
+						break;
+					case 3:
+						System.out.println("\n--- Invoices ---");
+						for (int i = 0; i < invoices.size(); i++) {
+							System.out.println(i + 1 + ". " + invoices.get(i).toString());
+						}
+						break;
+					case 4:
+						System.out.print("Escribe tu nombre...: ");
 
-		List<Cliente> clienteList = new ArrayList<>();
-		Cliente cliente = new Cliente("Francisco", 12);
-		clienteList.add(new Cliente("Luis", 1));
-		clienteList.add(new Cliente("Fernando", 2));
-		clienteList.add(new Cliente("Lucero", 3));
-		clienteList.add(new Cliente("Lucas", 4));
-
-
-		Tienda productosTienda = new Tienda(productoList, clienteList);
-
-		Scanner scanner = new Scanner(System.in);
-
-		System.out.println("Bienvenido ");
-		System.out.println("---------------------------------");
-		System.out.println("Escribre la ópcion");
-		System.out.println("1. Registros compra");
-		System.out.println("2. Comprar");
-		int registroDeCompra = scanner.nextInt();
-
-		switch (registroDeCompra){
-			case 1:productosTienda.verProductos();
-
-			case 2:
-				System.out.println("Estos son los productos disponibles.");
-				productosTienda.verProductos();
-
-				for (Producto producto: productoList){
-					System.out.println("Los productos son: " + producto.getNombreProducto());
+						scan.nextLine();
+						name = scan.nextLine();
+						break;
+					case 5:
+						running = false;
+						break;
+					default:
+						System.out.println("Opción invalida");
 				}
-
-				System.out.println("Escribe el producto que quieres comprar");
-				String productoCarrito = scanner.next();
-				System.out.println("Escribe la cantidad en numeros del producto");
-				int cantidadProducto = scanner.nextInt();
-				productosTienda.iterarProducto(productoCarrito);
-				System.out.println(cliente.carrito);
-
-
-		}
-
-
-
-
-
-
+			}
+		System.out.println("Sayonara!");
 	}
+
 }
 
 
