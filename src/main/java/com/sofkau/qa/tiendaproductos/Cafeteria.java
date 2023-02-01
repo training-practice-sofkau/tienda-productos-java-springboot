@@ -61,6 +61,9 @@ public class Cafeteria {
         productoList.add(producto);
     }
 
+    /**
+     * Método que permite realizar una compra
+     */
     public void iniciarCompra() {
         Scanner entrada = new Scanner(System.in);
         System.out.println("Nombre del cliente: ");
@@ -101,6 +104,9 @@ public class Cafeteria {
         }
     }
 
+    /**
+     * Método que permite generar una factura
+     */
     public void generarFactura(){
         this.facturaEnCurso.generarFactura();
         this.facturas.add(facturaEnCurso);
@@ -116,6 +122,9 @@ public class Cafeteria {
         this.facturaEnCurso = null;
     }
 
+    /**
+     * Este método muestra el historial de ventas
+     */
     public void imprimirHistorialVentas (){
         int contador = 1;
         for (Factura factura : this.facturas){
