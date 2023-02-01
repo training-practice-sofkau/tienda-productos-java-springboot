@@ -1,6 +1,6 @@
-package com.sofkau.qa.tiendaproductos;
+package com.sofkau.qa.tiendaproductos.Modelos;
 
-public class ProdCantidad extends Producto{
+public class ProdCantidad extends Producto {
     private int cantidad;
 
     public ProdCantidad(String id, String nombre, double precio, int cantidad) {

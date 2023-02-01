@@ -1,4 +1,6 @@
-package com.sofkau.qa.tiendaproductos;
+package com.sofkau.qa.tiendaproductos.Modelos;
+
+import com.sofkau.qa.tiendaproductos.Modelos.ProdCantidad;
 
 import java.util.ArrayList;
 import java.util.List;

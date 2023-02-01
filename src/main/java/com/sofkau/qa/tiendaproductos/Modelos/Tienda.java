@@ -1,7 +1,12 @@
-package com.sofkau.qa.tiendaproductos;
+package com.sofkau.qa.tiendaproductos.Modelos;
+
+import com.sofkau.qa.tiendaproductos.Modelos.Factura;
+import com.sofkau.qa.tiendaproductos.Modelos.ProdCantidad;
+import com.sofkau.qa.tiendaproductos.Modelos.Stock;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class Tienda {
     private Stock misProductos;

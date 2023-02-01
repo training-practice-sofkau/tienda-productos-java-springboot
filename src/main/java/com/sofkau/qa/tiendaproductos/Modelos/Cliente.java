@@ -1,4 +1,4 @@
-package com.sofkau.qa.tiendaproductos;
+package com.sofkau.qa.tiendaproductos.Modelos;
 
 public class Cliente {
 
