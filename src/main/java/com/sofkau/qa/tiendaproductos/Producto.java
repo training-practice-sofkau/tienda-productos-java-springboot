@@ -7,6 +7,7 @@ public class Producto {
     /**
      * Atributos
      */
+    private int ID;
     private String nombre;
     private int precio;
     private int stock;
@@ -53,4 +54,11 @@ public class Producto {
         this.stock = stock;
     }
 
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
 }

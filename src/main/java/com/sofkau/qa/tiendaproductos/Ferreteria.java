@@ -13,7 +13,7 @@ public class Ferreteria {
     public List<Producto> productoStock;
     private ArrayList<Factura> facturas;
     private Factura facturaEnCurso;
-
+    private int ID = 1;
 
     public Ferreteria() {
         this.productoList = new ArrayList<>();
@@ -26,6 +26,8 @@ public class Ferreteria {
      * @param producto
      */
     public void agregarProductos(Producto producto) {
+        producto.setID(this.ID);
+        this.ID++;
         productoList.add(producto);
     }
 
@@ -123,5 +125,23 @@ public class Ferreteria {
     public List<Producto> getProductoStock() {
         this.productosDisponibles();
         return productoStock;
+    }
+
+
+    /*public List<Factura> getFacturas() {
+        this.imprimirHistorialVentas();
+        return facturas;
+    }
+*/
+    public ArrayList<Factura> getFacturas() {
+        return facturas;
+    }
+
+    public List<Producto> getProductoList() {
+        return productoList;
+    }
+
+    public void setProductoList(List<Producto> productoList) {
+        this.productoList = productoList;
     }
 }
