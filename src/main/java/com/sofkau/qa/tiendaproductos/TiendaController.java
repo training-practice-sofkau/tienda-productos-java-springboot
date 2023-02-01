@@ -37,7 +37,9 @@ public class TiendaController {
 
     @GetMapping("/bring/all")
     public ResponseEntity GETtraerProductos(){
-        return new ResponseEntity(productos ,HttpStatus.FOUND);
+        System.out.println(tiendaDonJose.getProductos());
+
+        return new ResponseEntity(tiendaDonJose.getProductos() ,HttpStatus.FOUND);
     }
 
     @GetMapping("/bring/all2")
@@ -56,8 +58,7 @@ public class TiendaController {
                 producto.getNombre(),
                 producto.getCantidadProducto(),
                 producto.getPrecio());
-        List<Producto> productos1 = new ArrayList<Producto>();
-        productos1.add(productoInventario);
+        tiendaDonJose.agregarProducto(productoInventario);
         return new ResponseEntity(productoInventario, HttpStatus.CREATED);
     }
 

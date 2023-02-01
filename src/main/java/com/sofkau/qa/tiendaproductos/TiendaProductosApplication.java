@@ -3,6 +3,7 @@ package com.sofkau.qa.tiendaproductos;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 import java.util.Scanner;
 
@@ -81,4 +82,9 @@ public class TiendaProductosApplication implements CommandLineRunner {
 		 */
 
 	}
+
+	@Bean
+	public TiendaDonJose construirTienda(){
+		return  new TiendaDonJose("Tienda Don Jose");
+	};
 };

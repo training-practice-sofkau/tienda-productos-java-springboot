@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Component
+
 public class TiendaDonJose {
-    private String nombre;
-    List<Producto> productos;
-    List<Cliente> registro;
+    private String  nombre;
+    private List<Producto> productos;
+    private List<Cliente> registro;
 
     private int precioProducto;
 
@@ -20,8 +20,7 @@ public class TiendaDonJose {
     private String facturaCliente;
 public TiendaDonJose(String nombre) {
         this.nombre = nombre;
-        productos = Arrays.asList(
-                new Producto("1","sal",100,3000),
+        productos = new ArrayList<>(List.of(new Producto("1","sal",100,3000),
                 new Producto("2","azucar",100,2500),
                 new Producto("3","cereal",100,5000),
                 new Producto("4","aceite",100,7000),
@@ -30,13 +29,10 @@ public TiendaDonJose(String nombre) {
                 new Producto("7","aguariente",100,50000),
                 new Producto("8","doritos",100,4000),
                 new Producto("9","mantequilla",100,3000),
-                new Producto("10","salsa de tomate",100,4500)
-        );
+                new Producto("10","salsa de tomate",100,4500)));
         registro = Arrays.asList(new Cliente("Andres",44444444),new Cliente("Juan",666666666));
         }
 
-    public TiendaDonJose() {
-    }
 
     public void verRegistro(){
             System.out.println(registro.toString());
@@ -78,6 +74,22 @@ public TiendaDonJose(String nombre) {
 
     public void agregarProducto(Producto producto) {
       productos.add(producto);
+    }
+
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
+    }
+
+    public List<Cliente> getRegistro() {
+        return registro;
+    }
+
+    public void setRegistro(List<Cliente> registro) {
+        this.registro = registro;
     }
 }
 
