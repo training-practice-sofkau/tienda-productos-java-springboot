@@ -20,7 +20,7 @@ public class StoreController {
 
     List<PurchaseOrder> purchaseOrders = new ArrayList<>();
 
-    @GetMapping("/storeorders/all")
+    @GetMapping("/orders/all")
     public ResponseEntity getAllOrders(){
         return new ResponseEntity(purchaseOrders, HttpStatus.FOUND);
     }
