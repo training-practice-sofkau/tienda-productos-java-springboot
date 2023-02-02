@@ -4,9 +4,9 @@ import com.sofkau.qa.tiendaproductos.repository.domain.Producto;
 
 import java.util.List;
 
-public interface IArticulosService {
+public interface IProductosService {
 
-    List<Producto> articulosDisponibles();
+    List<Producto> mostrarArticulosDisponibles();
 
     Producto agregarArticulo(Producto producto);
 }

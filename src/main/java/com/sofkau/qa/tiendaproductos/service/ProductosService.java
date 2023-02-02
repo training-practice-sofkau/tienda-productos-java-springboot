@@ -6,19 +6,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
-public class ArticulosService implements IArticulosService{
+public class ProductosService implements IProductosService {
 
     @Autowired
     private TiendaPc tiendaPc;
     @Override
-    public List<Producto> articulosDisponibles() {
-        return tiendaPc.get;
+    public List<Producto> mostrarArticulosDisponibles() {
+        return tiendaPc.getProductos();
     }
 
     @Override
     public Producto agregarArticulo(Producto producto) {
+
+        Producto productoAlmacen = new Producto(UUID.randomUUID().toString(),producto.getNombre(),producto.getPrecio(),
+                producto.getCantidadProducto());
+                tiendaPc.agregarProducto(productoAlmacen);
         return null;
     }
 }

@@ -2,14 +2,13 @@ package com.sofkau.qa.tiendaproductos.repository;
 
 import com.sofkau.qa.tiendaproductos.repository.domain.Producto;
 import org.springframework.stereotype.Repository;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
+
 
 @Repository
 public class TiendaPc {
-    private final String nombbreTienda = "mundoPc";
+    private final String nombbreTienda = "MundoPc";
     private List<Producto> productos;
     private int valorArticulo;
 
