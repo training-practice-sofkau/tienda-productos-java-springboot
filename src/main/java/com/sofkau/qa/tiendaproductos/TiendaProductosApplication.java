@@ -6,6 +6,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.Scanner;
+
 @SpringBootApplication
 public class TiendaProductosApplication {
 
@@ -19,12 +21,23 @@ public class TiendaProductosApplication {
 	}
 	@Bean
 	public CommandLineRunner cambiarEstenombre(){
+		var opcion= -1;
+		Scanner entrada = new Scanner(System.in);
+		Cliente cliente = new Cliente("Antonio");
 
 		return args -> {
-			System.out.println("**** ShopPc ***");
-			System.out.println();
-			System.out.println("Articulos de la tienda\n");
 
+			while (opcion != 0){
+				System.out.println("Elige una opcion: \n"
+					+ "1. Mostrar Catalogo de productos: \n"
+					+ "2. Listar Catalogo\n"
+					+ "0. Salir");
+
+			}
+			System.out.println("Digite su nombre: ");
+			var nombreCliente = entrada.nextLine();
+			System.out.println();
+			System.out.println("  ****** Articulos ShopPc *******\n");
 			ShopPc prueba = new ShopPc();
 			prueba.tienda();
 		};
