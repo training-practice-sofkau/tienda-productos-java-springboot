@@ -1,23 +1,9 @@
-package com.sofkau.qa.tiendaproductos;
+package com.sofkau.qa.tiendaproductos.VersionSinSpring;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.Scanner;
 import java.util.ArrayList;
-import org.springframework.web.bind.annotation.*;
 
-
-
-@SpringBootApplication
-public class TiendaProductosApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(TiendaProductosApplication.class, args);
-
-
-	}
-
-		/*public class Main {
+public class Main {
     static Scanner scan = new Scanner(System.in);
     static ArrayList<Product> products = new ArrayList<Product>();
     static ArrayList<Invoice> invoices = new ArrayList<Invoice>();
@@ -165,5 +151,3 @@ class Invoice {
         return result;
     }
 }
-*/
-	}
