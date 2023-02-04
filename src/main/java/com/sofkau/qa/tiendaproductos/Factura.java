@@ -13,6 +13,10 @@ public class Factura {
         this.products = products;
     }
 
+    public Factura(List<Producto> productos, String customerName) {
+
+    }
+
     public String getName() {
         return customerName;
     }
@@ -35,5 +39,8 @@ public class Factura {
         sb.append("Total: $" + total + "\n");
         sb.append("Muchas gracias por tu compra ;) ");
         return sb.toString();
+    }
+
+    public static void add(Factura factura) {
     }
 }
