@@ -12,6 +12,6 @@ Además, se busca extender la aplicación usando una API REST con Spring Boot as
 - Usar DELETE para eliminar un producto existente
 ## Estructura
 - - -
-## Resultados
+## Resultado
 - - -
 ***Realizado por: Jonathan Vargas :turtle: Ococho***
