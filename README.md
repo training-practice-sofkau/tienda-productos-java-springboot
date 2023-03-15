@@ -1,3 +1,10 @@
+<a href="https://gitmoji.dev">
+  <img
+    src="https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat-square"
+    alt="Gitmoji"
+  />
+</a>
+
 # Aproximación a Framework Spring Boot
 - - -
 En esta rama encontrarás la solución al taller propuesto sobre el framework Spring Boot.
@@ -12,6 +19,6 @@ Además, se busca extender la aplicación usando una API REST con Spring Boot as
 - Usar DELETE para eliminar un producto existente
 ## Estructura
 - - -
-## Resultado
+## Resultados
 - - -
 ***Realizado por: Jonathan Vargas :turtle: Ococho***
